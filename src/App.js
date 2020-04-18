@@ -1,26 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import HeaderComponent from './components/header/header.component';
+import FooterCompoent from './components/footer/footer.component';
+import PlayListDisplay from './components/playlist-display/PlayListDisplay';
+import ControlArea from './components/control-area/ControlArea';
+import PlayListBannerComponent from './components/playlist-banner/PlayListBannerComponent';
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container mussey-app'>
+      <HeaderComponent />
+      <div class='row'>
+        <div class='col'>
+          <PlayListBannerComponent />
+          <PlayListDisplay />
+        </div>
+      </div>
+      <ControlArea />
+      {/* <FooterCompoent /> */}
     </div>
   );
-}
+};
 
 export default App;
