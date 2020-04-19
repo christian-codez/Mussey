@@ -1,0 +1,15 @@
+.music-title {
+  margin-left: 24px;
+  color: #fff;
+  font-size: 20px;
+  text-transform: uppercase;
+  display: block;
+  font-family: 'Righteous', cursive;
+}
+
+span.music-author {
+  margin-left: 24px;
+  font-size: 23px;
+  color: #fff;
+  font-family: 'Cormorant Upright', serif;
+}

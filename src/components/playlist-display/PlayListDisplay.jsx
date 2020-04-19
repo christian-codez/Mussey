@@ -1,5 +1,6 @@
 import React from 'react';
 import TrackRowComponent from '../track-row/TrackRowComponent';
+import './playlist-display.style.css';
 const PlayListDisplay = () => {
   return (
     <section className='mussey-playlist scroll'>

@@ -1,0 +1,27 @@
+div.controls {
+  padding: 17px 0;
+}
+
+.previous-song svg,
+.play-pause svg,
+.next-song svg,
+.repeat-song svg {
+  color: #fff;
+  font-size: 26px;
+}
+
+.volumn-down svg {
+  color: #fff;
+  font-size: 21px;
+  margin-right: 17px;
+}
+
+.volumn-up svg {
+  color: #fff;
+  margin-left: 19px;
+  font-size: 21px;
+}
+
+.pointer-cursor {
+  cursor: pointer;
+}

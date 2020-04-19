@@ -1,0 +1,20 @@
+.mussey-playlist,
+.mussey-playlist table {
+  height: 63vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.scroll::-webkit-scrollbar {
+  width: 12px;
+}
+
+.scroll::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgb(163, 163, 163);
+  border-radius: 10px;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgb(22, 141, 107);
+}
