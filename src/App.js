@@ -11,7 +11,8 @@ const App = () => {
       <div className='row'>
         <div className='col'>
           <Switch>
-            <Route path='/' component={MusicPlayer} />
+            <Route exact path='/' component={MusicPlayer} />
+            <Route exact path='/:id' component={MusicPlayer} />
           </Switch>
         </div>
       </div>

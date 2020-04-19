@@ -1,15 +1,38 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { setCurrentSong } from '../../redux/actions/songActions';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMusic } from '@fortawesome/free-solid-svg-icons';
+import './trackrow.style.css';
 
-const TrackRowComponent = () => {
+const TrackRowComponent = ({ setCurrentSong, ...props }) => {
+  const { artistName, albumName, playbackSeconds } = props.track;
+  const calculateDuration = duration => {
+    if (duration < 60) return `00.${duration}s`;
+
+    return `${(duration / 60).toFixed(2)}s`;
+  };
+
+  const setCurrentTrack = track => {
+    setCurrentSong(track);
+    console.log('current track:', track);
+  };
+
   return (
-    <tr>
-      <th scope='row'>3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-      <td>@twitter</td>
+    <tr
+      onClick={() => setCurrentTrack(props.track)}
+      className='track-item'
+      style={{ cursor: 'pointer' }}>
+      <th scope='row'>
+        <span className='playicon'>
+          <FontAwesomeIcon icon={faMusic} />
+        </span>
+      </th>
+      <td>{albumName}</td>
+      <td>{artistName}</td>
+      <td>{calculateDuration(playbackSeconds)}</td>
     </tr>
   );
 };
 
-export default TrackRowComponent;
+export default connect(null, { setCurrentSong })(TrackRowComponent);

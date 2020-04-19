@@ -1,38 +1,50 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import TrackRowComponent from '../track-row/TrackRowComponent';
 import './playlist-display.style.css';
-const PlayListDisplay = () => {
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { selectCurrentSongList } from '../../redux/reselect/songSelector';
+import { fetchSongsAsync } from '../../redux/actions/songActions';
+const PlayListDisplay = ({ currentSongLists, fetchSongsAsync, ...props }) => {
+  console.log(props);
+
+  useEffect(() => {
+    if (props.history.location.pathname === '/') {
+      fetchSongsAsync('/tracks/top');
+      console.log('FETCH TOP TRACKS');
+    } else if (props.history.location.pathname.includes('genres')) {
+      fetchSongsAsync('/genres/');
+    }
+  }, []);
+
   return (
     <section className='mussey-playlist scroll'>
       <table className='table table-hover table-dark'>
         <thead>
           <tr>
-            <th scope='col'>#</th>
+            <th scope='col'></th>
             <th scope='col'>Title</th>
             <th scope='col'>Artist</th>
-            <th scope='col'>Album</th>
             <th scope='col'>Duration</th>
           </tr>
         </thead>
         <tbody>
-          <TrackRowComponent />
-          <TrackRowComponent />
-          <TrackRowComponent />
-          <TrackRowComponent />
-          <TrackRowComponent />
-          <TrackRowComponent />
-          <TrackRowComponent />
-          <TrackRowComponent />
-          <TrackRowComponent />
-          <TrackRowComponent />
-          <TrackRowComponent />
-          <TrackRowComponent />
-          <TrackRowComponent />
-          <TrackRowComponent />
+          {currentSongLists &&
+            currentSongLists.map(track => (
+              <TrackRowComponent key={track.id} track={track} />
+            ))}
         </tbody>
       </table>
     </section>
   );
 };
 
-export default PlayListDisplay;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    currentSongLists: selectCurrentSongList(state),
+  };
+};
+
+export default withRouter(
+  connect(mapStateToProps, { fetchSongsAsync })(PlayListDisplay)
+);

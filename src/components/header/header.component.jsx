@@ -12,15 +12,14 @@ const HeaderComponent = ({ musicgenres, fetchGenresAsync }) => {
     return () => {};
   }, []);
 
-  console.log(typeof musicgenres);
   console.log('Genres', musicgenres);
 
   return (
     <header>
       <nav className='navbar navbar-expand-md navbar-dark mussey-nav-header bg-dark'>
-        <a className='navbar-brand' href='#'>
+        <Link className='navbar-brand' to='/'>
           MUSSEY PLAYER
-        </a>
+        </Link>
         <button
           className='navbar-toggler'
           type='button'

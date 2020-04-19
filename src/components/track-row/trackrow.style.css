@@ -1,0 +1,16 @@
+tr:hover svg {
+  color: #ff9c00;
+}
+
+.track-item {
+  transition: all 0.2s;
+}
+
+.track-item svg {
+  font-size: 18px;
+  color: #a8a7a8;
+}
+
+tr.track-item:hover {
+  background-color: #633e5f7d !important;
+}

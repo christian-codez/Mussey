@@ -1,4 +1,6 @@
 export const song_action_types = {
   FETCH_GENRES: 'FETCH_GENRES',
+  FETCH_TRACKS: 'FETCH_TRACKS',
+  SET_CURRENT_TRACK: 'SET_CURRENT_TRACK',
   FETCH_TOP_10: 'FETCH_TOP_10',
 };
