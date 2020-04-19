@@ -6,7 +6,7 @@ import { faMusic } from '@fortawesome/free-solid-svg-icons';
 import './trackrow.style.css';
 
 const TrackRowComponent = ({ setCurrentSong, ...props }) => {
-  const { artistName, albumName, playbackSeconds } = props.track;
+  const { artistName, name, playbackSeconds } = props.track;
   const calculateDuration = duration => {
     if (duration < 60) return `00.${duration}s`;
 
@@ -15,7 +15,6 @@ const TrackRowComponent = ({ setCurrentSong, ...props }) => {
 
   const setCurrentTrack = track => {
     setCurrentSong(track);
-    console.log('current track:', track);
   };
 
   return (
@@ -28,7 +27,7 @@ const TrackRowComponent = ({ setCurrentSong, ...props }) => {
           <FontAwesomeIcon icon={faMusic} />
         </span>
       </th>
-      <td>{albumName}</td>
+      <td>{name}</td>
       <td>{artistName}</td>
       <td>{calculateDuration(playbackSeconds)}</td>
     </tr>

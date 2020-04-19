@@ -46,3 +46,19 @@ export const setCurrentSong = track => {
     }
   };
 };
+
+export const nextSong = () => {
+  return async dispatch => {
+    try {
+      dispatch({ type: song_action_types.NEXT_SONG });
+    } catch (e) {}
+  };
+};
+
+export const previousSong = () => {
+  return async dispatch => {
+    try {
+      dispatch({ type: song_action_types.PREVIOUS_SONG });
+    } catch (e) {}
+  };
+};

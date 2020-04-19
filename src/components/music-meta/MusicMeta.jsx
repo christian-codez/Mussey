@@ -2,13 +2,13 @@ import React from 'react';
 import './musicmeta.css';
 import AuthorMeta from '../author-meta/AuthorMeta';
 import CustomImage from '../custom-image/CustomImage';
-const MusicMeta = () => {
+const MusicMeta = ({ title, artistName }) => {
   return (
     <div className='music-meta align-items-center d-flex justify-content-start'>
       <div className='music-label'>
-        <CustomImage />
+        <CustomImage className='rounded-circle loading' />
       </div>
-      <AuthorMeta />
+      <AuthorMeta title={title} artistName={artistName} />
     </div>
   );
 };
