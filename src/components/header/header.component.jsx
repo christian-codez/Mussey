@@ -1,6 +1,20 @@
-import React, { Fragment } from 'react';
+import React, { useEffect } from 'react';
 import './header.styles.css';
-const HeaderComponent = () => {
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { fetchGenresAsync } from '../../redux/actions/songActions';
+import { selectMusicGenres } from '../../redux/reselect/songSelector';
+const HeaderComponent = ({ musicgenres, fetchGenresAsync }) => {
+  useEffect(() => {
+    (async () => {
+      await fetchGenresAsync();
+    })();
+    return () => {};
+  }, []);
+
+  console.log(typeof musicgenres);
+  console.log('Genres', musicgenres);
+
   return (
     <header>
       <nav className='navbar navbar-expand-md navbar-dark mussey-nav-header bg-dark'>
@@ -19,40 +33,42 @@ const HeaderComponent = () => {
         </button>
         <div className='collapse navbar-collapse' id='navbarCollapse'>
           <ul className='navbar-nav ml-auto'>
-            <li className='nav-item dropdown'>
-              <a
-                className='nav-link dropdown-toggle'
-                href='#'
-                id='navbarDropdown'
-                role='button'
-                data-toggle='dropdown'
-                aria-haspopup='true'
-                aria-expanded='false'>
-                Genres
-              </a>
-              <div className='dropdown-menu' aria-labelledby='navbarDropdown'>
-                <a className='dropdown-item' href='#'>
-                  Action
-                </a>
+            {musicgenres ? (
+              <li className='nav-item dropdown'>
+                <Link
+                  className='nav-link dropdown-toggle'
+                  to=''
+                  id='navbarDropdown'
+                  role='button'
+                  data-toggle='dropdown'
+                  aria-haspopup='true'
+                  aria-expanded='false'>
+                  Genres
+                </Link>
+                <div className='dropdown-menu' aria-labelledby='navbarDropdown'>
+                  {musicgenres.map(({ id, ...genre }) => (
+                    <Link
+                      to={`/genres/${genre.shortcut}`}
+                      key={id}
+                      className='dropdown-item'>
+                      {genre.name}
+                    </Link>
+                  ))}
+                </div>
+              </li>
+            ) : (
+              ''
+            )}
 
-                <a className='dropdown-item' href='#'>
-                  Another action
-                </a>
-
-                <a className='dropdown-item' href='#'>
-                  Something else here
-                </a>
-              </div>
-            </li>
             <li className='nav-item'>
-              <a className='nav-link' href='#'>
+              <Link to='' className='nav-link'>
                 Sign Out
-              </a>
+              </Link>
             </li>
             <li className='nav-item'>
-              <a className='nav-link disabled' href='#'>
+              <Link to='' className='nav-link disabled'>
                 Sign In
-              </a>
+              </Link>
             </li>
             <img
               src='https://www.w3schools.com/bootstrap4/newyork.jpg'
@@ -67,4 +83,10 @@ const HeaderComponent = () => {
   );
 };
 
-export default HeaderComponent;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    musicgenres: selectMusicGenres(state),
+  };
+};
+
+export default connect(mapStateToProps, { fetchGenresAsync })(HeaderComponent);

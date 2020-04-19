@@ -30,7 +30,7 @@ const MusicControl = () => {
           <FontAwesomeIcon icon={faVolumeDown} />
         </div>
         <div className='control-gear '>
-          <input type='range' min='1' max='100' value='50' />
+          <input type='range' min='1' max='100' defaultValue={'50'} />
         </div>
         <div className='volumn-up pointer-cursor'>
           <FontAwesomeIcon icon={faVolumeUp} />

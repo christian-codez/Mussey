@@ -4,7 +4,7 @@ import './playlist-display.style.css';
 const PlayListDisplay = () => {
   return (
     <section className='mussey-playlist scroll'>
-      <table class='table table-hover table-dark'>
+      <table className='table table-hover table-dark'>
         <thead>
           <tr>
             <th scope='col'>#</th>

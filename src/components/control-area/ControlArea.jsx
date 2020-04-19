@@ -13,8 +13,8 @@ const ControlArea = () => {
   useEffect(() => {
     try {
       (async () => {
-        const response = await napsterAPI.get(`/tracks/top?apikey=${apiKey}`);
-        setSongs(response.data);
+        // const response = await napsterAPI.get(`/tracks/top?apikey=${apiKey}`);
+        // setSongs(response.data);
       })();
     } catch (error) {
       console.log(error);

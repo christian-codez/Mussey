@@ -1,21 +1,21 @@
 import React from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import HeaderComponent from './components/header/header.component';
-import FooterCompoent from './components/footer/footer.component';
-import PlayListDisplay from './components/playlist-display/PlayListDisplay';
+import MusicPlayer from './containers/MusicPlayer';
 import ControlArea from './components/control-area/ControlArea';
-import PlayListBannerComponent from './components/playlist-banner/PlayListBanner';
+
 const App = () => {
   return (
     <div className='container mussey-app'>
       <HeaderComponent />
-      <div class='row'>
-        <div class='col'>
-          <PlayListBannerComponent />
-          <PlayListDisplay />
+      <div className='row'>
+        <div className='col'>
+          <Switch>
+            <Route path='/' component={MusicPlayer} />
+          </Switch>
         </div>
       </div>
       <ControlArea />
-      {/* <FooterCompoent /> */}
     </div>
   );
 };

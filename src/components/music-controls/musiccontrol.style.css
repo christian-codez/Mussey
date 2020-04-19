@@ -2,12 +2,17 @@ div.controls {
   padding: 17px 0;
 }
 
+div.controls svg:hover {
+  color: #5fbfa4;
+}
+
 .previous-song svg,
 .play-pause svg,
 .next-song svg,
 .repeat-song svg {
   color: #fff;
   font-size: 26px;
+  transition: all 1.5s;
 }
 
 .volumn-down svg {
