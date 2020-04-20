@@ -14,3 +14,6 @@ export const player_action_types = {
   REPEAT_CURRENT: 'REPEAT_CURRENT',
   REPEAT_NO_MUSIC: 'REPEAT_NO_MUSIC',
 };
+export const settings_action_types = {
+  VOLUME_CHANGED: 'VOLUME_CHANGED',
+};

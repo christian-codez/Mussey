@@ -7,6 +7,7 @@ import {
   faSquare,
   faForward,
   faRedo,
+  faVolumeMute,
   faVolumeDown,
   faVolumeUp,
   faBan,
@@ -16,18 +17,18 @@ import { connect } from 'react-redux';
 import {
   selectPlayNext,
   selectPlayPrev,
-  selectCurrentSong,
 } from '../../redux/reselect/songSelector';
 import {
   selectPlayerStatus,
   selectRepeat,
 } from '../../redux/reselect/playerSelector';
+import { selectSettingsVolume } from '../../redux/reselect/settingsSelector';
+import { toggleVolume } from '../../redux/actions/settingsAction';
 import {
   startMusic,
   pauseMusic,
   stopMusic,
   repeatCurrentMusic,
-  repeaAllPlaylist,
   repeatNoMusic,
 } from '../../redux/actions/playerActions';
 import {
@@ -39,7 +40,6 @@ import {
 const MusicControl = props => {
   const {
     song,
-
     startMusic,
     pauseMusic,
     stopMusic,
@@ -49,7 +49,8 @@ const MusicControl = props => {
     showPrev,
     showNext,
     repeatCurrentMusic,
-    repeaAllPlaylist,
+    toggleVolume,
+    volumeLevel,
     repeatNoMusic,
     repeat,
   } = props;
@@ -58,6 +59,7 @@ const MusicControl = props => {
   const sourceRef = useRef(null);
   const trackersliderRef = useRef(null);
   const audioRef = useRef(null);
+  const volumeRangeControl = useRef(null);
 
   useEffect(() => {
     if (song) {
@@ -68,16 +70,15 @@ const MusicControl = props => {
   }, [song]);
 
   function updateTracker() {
-    setInterval(() => {
-      setTimeElapsed((audioRef.current.currentTime / 100).toFixed(2));
-      trackersliderRef.current.value = audioRef.current.currentTime;
-    }, 1000);
+    setTimeElapsed((audioRef.current.currentTime / 100).toFixed(2));
+    trackersliderRef.current.value = audioRef.current.currentTime;
   }
 
   const playSong = () => {
     startMusic();
     audioRef.current.play();
-    updateTracker();
+    let tracker = setInterval(updateTracker, 1000);
+
     audioRef.current.onended = () => {
       if (showNext) return nextSong();
       stopMusic();
@@ -95,9 +96,23 @@ const MusicControl = props => {
     audioRef.current.currentTime = 0;
   };
 
-  const ToggleVolumn = event => {
-    audioRef.current.volume = event.target.value;
-    console.log(audioRef.duration);
+  const ToggleVolume = event => {
+    const { value } = event.target;
+    audioRef.current.volume = value;
+    toggleVolume(value);
+  };
+
+  const increaseVolume = () => {
+    let newV = (parseFloat(volumeLevel) + 0.1).toFixed(1);
+    volumeRangeControl.current.value = newV;
+    console.log(newV);
+    toggleVolume(newV);
+  };
+  const decreaseVolume = () => {
+    let newV = (parseFloat(volumeLevel) - 0.1).toFixed(1);
+    volumeRangeControl.current.value = newV;
+    console.log(newV);
+    toggleVolume(newV);
   };
 
   //if (song) {
@@ -191,22 +206,42 @@ const MusicControl = props => {
         )}
 
         <div className='volume-control d-flex align-items-center justify-content-between'>
-          <div
-            className={`${!song ? 'disabled' : ''} volumn-down pointer-cursor`}>
-            <FontAwesomeIcon icon={faVolumeDown} />
-          </div>
+          {volumeLevel >= 0.2 && volumeLevel < 1 ? (
+            <div
+              onClick={decreaseVolume}
+              className={`${
+                !song || volumeLevel === '0.1' || volumeLevel < '0.1'
+                  ? 'disabled'
+                  : ''
+              } volumn-down pointer-cursor`}>
+              <FontAwesomeIcon icon={faVolumeDown} />
+            </div>
+          ) : (
+            <div
+              onClick={decreaseVolume}
+              className={`${
+                !song || volumeLevel < '0.1' ? 'disabled' : ''
+              } volumn-down pointer-cursor`}>
+              <FontAwesomeIcon icon={faVolumeMute} />
+            </div>
+          )}
           <div className={` ${!song ? 'disabled' : ''} control-gear `}>
             <input
-              onChange={ToggleVolumn}
+              ref={volumeRangeControl}
+              onChange={ToggleVolume}
               type='range'
               min='0'
               max='1'
+              className='range'
               step={0.01}
-              defaultValue={'0.5'}
+              defaultValue={volumeLevel}
             />
           </div>
           <div
-            className={`${!song ? 'disabled' : ''} volumn-up pointer-cursor`}>
+            onClick={increaseVolume}
+            className={`${
+              !song || volumeLevel === '1.0' ? 'disabled' : ''
+            } volumn-up pointer-cursor`}>
             <FontAwesomeIcon icon={faVolumeUp} />
           </div>
         </div>
@@ -224,6 +259,7 @@ const mapStateToProps = (state, ownProps) => {
     showNext: selectPlayNext(state),
     showPrev: selectPlayPrev(state),
     repeat: selectRepeat(state),
+    volumeLevel: selectSettingsVolume(state),
   };
 };
 
@@ -234,7 +270,7 @@ export default connect(mapStateToProps, {
   nextSong,
   previousSong,
   repeatCurrentMusic,
-  repeaAllPlaylist,
   repeatNoMusic,
   setCurrentSong,
+  toggleVolume,
 })(MusicControl);
