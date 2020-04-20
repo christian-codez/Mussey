@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchGenresAsync } from '../../redux/actions/songActions';
 import { selectMusicGenres } from '../../redux/reselect/songSelector';
+import Logo from '../../img/mussey-logo.png';
 const HeaderComponent = ({ musicgenres, fetchGenresAsync }) => {
   useEffect(() => {
     (async () => {
@@ -16,7 +17,7 @@ const HeaderComponent = ({ musicgenres, fetchGenresAsync }) => {
     <header>
       <nav className='navbar navbar-expand-md navbar-dark mussey-nav-header bg-dark'>
         <Link className='navbar-brand' to='/'>
-          MUSSEY PLAYER
+          <img src={Logo} style={{ width: '157px' }} />
         </Link>
         <button
           className='navbar-toggler'
