@@ -1,5 +1,6 @@
 {
   "name": "mussey",
+  "homepage": "https://mussey-player.herokuapp.com/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
