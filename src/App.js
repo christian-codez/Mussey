@@ -7,7 +7,7 @@ import LoadingOverlay from './components/loading-overlay/LoadingOverlay';
 
 const App = () => {
   return (
-    <div className='container mussey-app'>
+    <div className='container-fluid mussey-app'>
       <HeaderComponent />
       <div className='row'>
         <div className='col'>
