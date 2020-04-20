@@ -25,3 +25,31 @@ export const stopMusic = () => {
     } catch (e) {}
   };
 };
+
+export const repeatCurrentMusic = () => {
+  return async dispatch => {
+    try {
+      dispatch({ type: player_action_types.REPEAT_CURRENT });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+export const repeaAllPlaylist = () => {
+  return async dispatch => {
+    try {
+      dispatch({ type: player_action_types.REPEAT_PLAYLIST });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+export const repeatNoMusic = () => {
+  return async dispatch => {
+    try {
+      dispatch({ type: player_action_types.REPEAT_NO_MUSIC });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};

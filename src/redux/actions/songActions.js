@@ -22,8 +22,6 @@ export const fetchSongsAsync = endpoint => {
     try {
       //run an async method to get the genres
       const response = await napsterAPI.get(`${endpoint}?apikey=${apiKey}`);
-      console.log(response.data);
-
       dispatch({
         type: song_action_types.FETCH_TRACKS,
         payload: response.data,

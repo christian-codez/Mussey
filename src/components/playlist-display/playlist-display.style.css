@@ -1,8 +1,10 @@
 .mussey-playlist,
 .mussey-playlist table {
-  height: 48vh;
+  height: 50vh;
   overflow-y: scroll;
   overflow-x: hidden;
+  font-family: 'Cormorant Upright', serif;
+  font-size: 20px;
 }
 
 .scroll::-webkit-scrollbar {
@@ -17,5 +19,5 @@
 .scroll::-webkit-scrollbar-thumb {
   border-radius: 10px;
   -webkit-box-shadow: inset 0 0 6px #664160;
-  background-color: #65406124;
+  background-color: #ff9c00c4;
 }

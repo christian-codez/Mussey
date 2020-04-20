@@ -6,16 +6,13 @@ import { connect } from 'react-redux';
 import { selectCurrentSongList } from '../../redux/reselect/songSelector';
 import { fetchSongsAsync } from '../../redux/actions/songActions';
 const PlayListDisplay = ({ currentSongLists, fetchSongsAsync, ...props }) => {
-  console.log(props);
-
   useEffect(() => {
     if (props.history.location.pathname === '/') {
       fetchSongsAsync('/tracks/top');
-      console.log('FETCH TOP TRACKS');
     } else if (props.history.location.pathname.includes('genres')) {
-      fetchSongsAsync('/genres/');
+      fetchSongsAsync(`/genres/${props.match.params.id}/tracks/top`);
     }
-  }, []);
+  }, [props.history.location.pathname]);
 
   return (
     <section className='mussey-playlist scroll'>

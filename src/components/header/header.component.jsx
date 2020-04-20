@@ -12,8 +12,6 @@ const HeaderComponent = ({ musicgenres, fetchGenresAsync }) => {
     return () => {};
   }, []);
 
-  console.log('Genres', musicgenres);
-
   return (
     <header>
       <nav className='navbar navbar-expand-md navbar-dark mussey-nav-header bg-dark'>
@@ -47,7 +45,7 @@ const HeaderComponent = ({ musicgenres, fetchGenresAsync }) => {
                 <div className='dropdown-menu' aria-labelledby='navbarDropdown'>
                   {musicgenres.map(({ id, ...genre }) => (
                     <Link
-                      to={`/genres/${genre.shortcut}`}
+                      to={`/genres/${id}`}
                       key={id}
                       className='dropdown-item'>
                       {genre.name}

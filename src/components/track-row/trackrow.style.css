@@ -2,7 +2,8 @@ tr:hover svg {
   color: #ff9c00;
 }
 
-.track-item {
+tr.track-item {
+  background-color: #001e3c;
   transition: all 0.2s;
 }
 
@@ -12,5 +13,13 @@ tr:hover svg {
 }
 
 tr.track-item:hover {
-  background-color: #633e5f7d !important;
+  background-color: #4e4131 !important;
+}
+
+tr.current-track.track-item {
+  background-color: #4e4131 !important;
+}
+
+tr.current-track.track-item svg {
+  color: #ff9c00;
 }

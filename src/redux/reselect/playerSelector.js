@@ -6,3 +6,8 @@ export const selectPlayerStatus = createSelector(
   [selectPlayer],
   player => player.playerStatus
 );
+
+export const selectRepeat = createSelector(
+  [selectPlayer],
+  player => player.repeat
+);
