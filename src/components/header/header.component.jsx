@@ -62,11 +62,11 @@ const HeaderComponent = ({ musicgenres, fetchGenresAsync }) => {
                 Sign Out
               </Link>
             </li>
-            <li className='nav-item'>
+            {/* <li className='nav-item'>
               <Link to='' className='nav-link disabled'>
                 Sign In
               </Link>
-            </li>
+            </li> */}
             <img
               src='https://www.w3schools.com/bootstrap4/newyork.jpg'
               className='rounded-circle'
