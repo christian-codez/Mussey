@@ -56,6 +56,7 @@ const MusicControl = props => {
   } = props;
 
   const [timeElapsed, setTimeElapsed] = useState('0.00');
+
   const sourceRef = useRef(null);
   const trackersliderRef = useRef(null);
   const audioRef = useRef(null);
@@ -63,11 +64,15 @@ const MusicControl = props => {
 
   useEffect(() => {
     if (song) {
-      stopSong();
-      audioRef.current.src = song.previewURL;
-      playSong();
+      resetPlayer();
     }
   }, [song]);
+
+  const resetPlayer = () => {
+    stopSong();
+    audioRef.current.src = song.previewURL;
+    playSong();
+  };
 
   function updateTracker() {
     setTimeElapsed((audioRef.current.currentTime / 100).toFixed(2));
@@ -103,16 +108,16 @@ const MusicControl = props => {
   };
 
   const increaseVolume = () => {
-    let newV = (parseFloat(volumeLevel) + 0.1).toFixed(1);
-    volumeRangeControl.current.value = newV;
-    console.log(newV);
-    toggleVolume(newV);
+    let updatedVolume = (parseFloat(volumeLevel) + 0.1).toFixed(1);
+    volumeRangeControl.current.value = updatedVolume;
+    audioRef.current.volume = updatedVolume;
+    toggleVolume(updatedVolume);
   };
   const decreaseVolume = () => {
-    let newV = (parseFloat(volumeLevel) - 0.1).toFixed(1);
-    volumeRangeControl.current.value = newV;
-    console.log(newV);
-    toggleVolume(newV);
+    let updatedVolume = (parseFloat(volumeLevel) - 0.1).toFixed(1);
+    volumeRangeControl.current.value = updatedVolume;
+    audioRef.current.volume = updatedVolume;
+    toggleVolume(updatedVolume);
   };
 
   //if (song) {
