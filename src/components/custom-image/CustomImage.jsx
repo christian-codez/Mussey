@@ -6,7 +6,6 @@ const CustomImage = props => {
       <img
         {...props}
         style={{ width: '72px', height: '72px', border: '3px solid #7e7e7e' }}
-        src='https://www.w3schools.com/bootstrap4/newyork.jpg'
         alt='Cinque Terre'
       />
     </Fragment>

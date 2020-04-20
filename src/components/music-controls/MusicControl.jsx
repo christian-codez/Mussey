@@ -75,15 +75,16 @@ const MusicControl = props => {
   };
 
   function updateTracker() {
-    setTimeElapsed((audioRef.current.currentTime / 100).toFixed(2));
-    trackersliderRef.current.value = audioRef.current.currentTime;
+    let currentTime = audioRef.current.currentTime;
+    setTimeElapsed((currentTime / 100).toFixed(2));
+    trackersliderRef.current.value = currentTime;
   }
 
   const playSong = () => {
+    console.log(audioRef);
     startMusic();
     audioRef.current.play();
     let tracker = setInterval(updateTracker, 1000);
-
     audioRef.current.onended = () => {
       if (showNext) return nextSong();
       stopMusic();
@@ -93,12 +94,14 @@ const MusicControl = props => {
   const pauseSong = () => {
     pauseMusic();
     audioRef.current.pause();
+    audioRef.current.onpause = () => {};
   };
 
   const stopSong = () => {
     stopMusic();
     audioRef.current.pause();
     audioRef.current.currentTime = 0;
+    audioRef.current.onended = () => {};
   };
 
   const ToggleVolume = event => {
@@ -120,7 +123,6 @@ const MusicControl = props => {
     toggleVolume(updatedVolume);
   };
 
-  //if (song) {
   return (
     <Fragment>
       <div className='play-progress d-flex align-items-center justify-content-between'>
@@ -253,9 +255,6 @@ const MusicControl = props => {
       </div>
     </Fragment>
   );
-  // }
-
-  //return <div>loading</div>;
 };
 
 const mapStateToProps = (state, ownProps) => {
