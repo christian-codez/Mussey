@@ -81,7 +81,6 @@ const MusicControl = props => {
   }
 
   const playSong = () => {
-    console.log(audioRef);
     startMusic();
     audioRef.current.play();
     let tracker = setInterval(updateTracker, 1000);

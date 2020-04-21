@@ -2,13 +2,25 @@ import React, { useEffect } from 'react';
 import './header.styles.css';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchGenresAsync } from '../../redux/actions/songActions';
-import { selectMusicGenres } from '../../redux/reselect/songSelector';
+import {
+  fetchGenresAsync,
+  fetchPlayAsync,
+} from '../../redux/actions/songActions';
+import {
+  selectMusicGenres,
+  selectMusicPlaylists,
+} from '../../redux/reselect/songSelector';
 import Logo from '../../img/mussey-logo.png';
-const HeaderComponent = ({ musicgenres, fetchGenresAsync }) => {
+const HeaderComponent = ({
+  musicgenres,
+  playlists,
+  fetchGenresAsync,
+  fetchPlayAsync,
+}) => {
   useEffect(() => {
     (async () => {
       await fetchGenresAsync();
+      await fetchPlayAsync();
     })();
     return () => {};
   }, []);
@@ -57,7 +69,33 @@ const HeaderComponent = ({ musicgenres, fetchGenresAsync }) => {
             ) : (
               ''
             )}
-
+            {playlists ? (
+              <li className='nav-item dropdown'>
+                <Link
+                  className='nav-link dropdown-toggle'
+                  to=''
+                  id='navbarDropdown'
+                  role='button'
+                  data-toggle='dropdown'
+                  aria-haspopup='true'
+                  aria-expanded='false'>
+                  Playlists
+                </Link>
+                <div className='dropdown-menu' aria-labelledby='navbarDropdown'>
+                  {playlists.map(({ id, ...playlist }) => (
+                    <Link
+                      to={`/playlists/${id}`}
+                      key={id}
+                      className='dropdown-item'>
+                      {playlist.name}
+                    </Link>
+                  ))}
+                </div>
+              </li>
+            ) : (
+              ''
+            )}
+            )
             <li className='nav-item'>
               <Link to='' className='nav-link'>
                 Sign Out
@@ -84,7 +122,11 @@ const HeaderComponent = ({ musicgenres, fetchGenresAsync }) => {
 const mapStateToProps = (state, ownProps) => {
   return {
     musicgenres: selectMusicGenres(state),
+    playlists: selectMusicPlaylists(state),
   };
 };
 
-export default connect(mapStateToProps, { fetchGenresAsync })(HeaderComponent);
+export default connect(mapStateToProps, {
+  fetchGenresAsync,
+  fetchPlayAsync,
+})(HeaderComponent);

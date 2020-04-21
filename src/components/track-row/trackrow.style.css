@@ -23,3 +23,11 @@ tr.current-track.track-item {
 tr.current-track.track-item svg {
   color: #ff9c00;
 }
+
+span.favorite {
+  margin-left: 10px;
+}
+
+span.favorite.added svg {
+  color: #ff9c00;
+}

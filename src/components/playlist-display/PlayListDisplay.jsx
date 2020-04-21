@@ -11,6 +11,8 @@ const PlayListDisplay = ({ currentSongLists, fetchSongsAsync, ...props }) => {
       fetchSongsAsync('/tracks/top');
     } else if (props.history.location.pathname.includes('genres')) {
       fetchSongsAsync(`/genres/${props.match.params.id}/tracks/top`);
+    } else if (props.history.location.pathname.includes('playlists')) {
+      fetchSongsAsync(`/playlists/${props.match.params.id}/tracks`);
     }
   }, [props.history.location.pathname]);
 

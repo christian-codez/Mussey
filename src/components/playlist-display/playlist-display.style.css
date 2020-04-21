@@ -1,10 +1,25 @@
 .mussey-playlist,
 .mussey-playlist table {
-  height: 50vh;
+  height: 38vh;
   overflow-y: scroll;
   overflow-x: hidden;
   font-family: 'Cormorant Upright', serif;
   font-size: 20px;
+}
+
+@media only screen and (max-width: 992px) {
+  .mussey-playlist,
+  .mussey-playlist table {
+    height: 38vh;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .mussey-playlist,
+  .mussey-playlist table {
+    height: 50vh;
+  }
 }
 
 .scroll::-webkit-scrollbar {

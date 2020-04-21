@@ -8,6 +8,10 @@ export const selectMusicGenres = createSelector([selectGenres], genres =>
   genres ? genres.genres : genres
 );
 
+export const selectMusicPlaylists = createSelector([selectSongs], songs =>
+  songs.playlists ? songs.playlists : null
+);
+
 export const selectCurrentSongList = createSelector([selectSongs], songs =>
   songs.currentSongList ? songs.currentSongList.tracks : songs.currentSongList
 );
