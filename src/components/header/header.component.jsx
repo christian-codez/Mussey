@@ -11,11 +11,15 @@ import {
   selectMusicPlaylists,
 } from '../../redux/reselect/songSelector';
 import Logo from '../../img/mussey-logo.png';
+import { selectCurrentUser } from '../../redux/reselect/userSelector';
+import { auth } from '../../firebase/firebase.util';
+
 const HeaderComponent = ({
   musicgenres,
   playlists,
   fetchGenresAsync,
   fetchPlayAsync,
+  currentUser,
 }) => {
   useEffect(() => {
     (async () => {
@@ -96,22 +100,30 @@ const HeaderComponent = ({
               ''
             )}
             )
-            <li className='nav-item'>
-              <Link to='' className='nav-link'>
-                Sign Out
-              </Link>
-            </li>
-            {/* <li className='nav-item'>
-              <Link to='' className='nav-link disabled'>
-                Sign In
-              </Link>
-            </li> */}
-            <img
-              src='https://www.w3schools.com/bootstrap4/newyork.jpg'
-              className='rounded-circle'
-              alt='Cinque Terre'
-              style={{ width: '40px', height: '40px' }}
-            />
+            {currentUser ? (
+              <li className='nav-item'>
+                <Link to='' onClick={() => auth.signOut()} className='nav-link'>
+                  Sign Out
+                </Link>{' '}
+              </li>
+            ) : (
+              <li className='nav-item'>
+                <Link to='/signin' className='nav-link'>
+                  Sign In
+                </Link>
+              </li>
+            )}
+            >
+            {currentUser ? (
+              <img
+                src={currentUser.photoURL}
+                className='rounded-circle'
+                alt='Cinque Terre'
+                style={{ width: '40px', height: '40px' }}
+              />
+            ) : (
+              ''
+            )}
           </ul>
         </div>
       </nav>
@@ -123,6 +135,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     musicgenres: selectMusicGenres(state),
     playlists: selectMusicPlaylists(state),
+    currentUser: selectCurrentUser(state),
   };
 };
 

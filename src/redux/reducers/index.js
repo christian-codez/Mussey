@@ -3,10 +3,20 @@ import songReducer from '../reducers/songReducer';
 import userReducer from '../reducers/userReducer';
 import playerReducer from '../reducers/playerReducer';
 import settingsReducer from '../reducers/settingsReducer';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
-export const combinedReducers = combineReducers({
-  songs: songReducer,
-  user: userReducer,
-  player: playerReducer,
-  settings: settingsReducer,
-});
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['settings', 'songs'],
+};
+export const combinedReducers = persistReducer(
+  persistConfig,
+  combineReducers({
+    songs: songReducer,
+    user: userReducer,
+    player: playerReducer,
+    settings: settingsReducer,
+  })
+);

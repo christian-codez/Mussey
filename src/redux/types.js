@@ -18,3 +18,7 @@ export const player_action_types = {
 export const settings_action_types = {
   VOLUME_CHANGED: 'VOLUME_CHANGED',
 };
+export const user_action_types = {
+  CREATE_USER_PROFILE: 'CREATE_USER_PROFILE',
+  USER_SIGNED_OUT: 'USER_SIGNED_OUT',
+};

@@ -52,3 +52,7 @@ div.controls svg:hover {
   pointer-events: none;
   opacity: 0.4;
 }
+
+.range {
+  cursor: pointer;
+}
