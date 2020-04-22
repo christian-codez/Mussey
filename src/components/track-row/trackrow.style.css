@@ -31,3 +31,13 @@ span.favorite {
 span.favorite.added svg {
   color: #ff9c00;
 }
+
+span.favorite.added svg {
+  color: #ff9c00;
+  transition: all 0.25s;
+}
+
+span.favorite.added svg:hover {
+  color: #01daff;
+  font-size: 20px;
+}

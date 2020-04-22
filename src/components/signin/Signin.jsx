@@ -4,14 +4,21 @@ import $ from 'jquery';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {} from '@fortawesome/free-solid-svg-icons';
 import { signInWithGoogle } from '../../firebase/firebase.util';
-const SignIn = props => {
+import { connect } from 'react-redux';
+import { selectCurrentUser } from '../../redux/reselect/userSelector';
+import { withRouter } from 'react-router-dom';
+
+const SignIn = ({ currentUser, history }) => {
   useEffect(() => {
+    if (currentUser !== null) {
+      $('#musseyModal').modal('hide');
+      history.push('/');
+    }
     $('#musseyModal').modal('show');
-  }, []);
+  }, [currentUser]);
 
   const signInWithGoogleAcoount = () => {
     signInWithGoogle();
-    console.log('signin with google');
   };
 
   return (
@@ -56,4 +63,9 @@ const SignIn = props => {
   );
 };
 
-export default SignIn;
+const mapStateToProps = state => {
+  return {
+    currentUser: selectCurrentUser(state),
+  };
+};
+export default withRouter(connect(mapStateToProps)(SignIn));

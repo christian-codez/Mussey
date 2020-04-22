@@ -13,6 +13,8 @@ import {
 import Logo from '../../img/mussey-logo.png';
 import { selectCurrentUser } from '../../redux/reselect/userSelector';
 import { auth } from '../../firebase/firebase.util';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 const HeaderComponent = ({
   musicgenres,
@@ -102,6 +104,19 @@ const HeaderComponent = ({
             )
             {currentUser ? (
               <li className='nav-item'>
+                <Link
+                  style={{ color: '#ff9c00' }}
+                  to='/favourites'
+                  className='nav-link'>
+                  <span className='badge badge-warning active-icon'>8</span>{' '}
+                  Favourite
+                </Link>
+              </li>
+            ) : (
+              ''
+            )}
+            {currentUser ? (
+              <li className='nav-item'>
                 <Link to='' onClick={() => auth.signOut()} className='nav-link'>
                   Sign Out
                 </Link>{' '}
@@ -112,8 +127,7 @@ const HeaderComponent = ({
                   Sign In
                 </Link>
               </li>
-            )}
-            >
+            )}{' '}
             {currentUser ? (
               <img
                 src={currentUser.photoURL}

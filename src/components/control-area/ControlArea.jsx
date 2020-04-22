@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './controlarea.css';
 import MusicMeta from '../music-meta/MusicMeta';
-import PlayerProgress from '../player-progress/PlayerProgress';
 import MusicControl from '../music-controls/MusicControl';
 import { connect } from 'react-redux';
 import { selectCurrentSong } from '../../redux/reselect/songSelector';

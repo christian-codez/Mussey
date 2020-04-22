@@ -1,19 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setCurrentSong } from '../../redux/actions/songActions';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faMusic,
-  faHeart,
-  faHeartbeat,
-} from '@fortawesome/free-solid-svg-icons';
+  setCurrentSong,
+  setFavoutiteSong,
+} from '../../redux/actions/songActions';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMusic } from '@fortawesome/free-solid-svg-icons';
 import './trackrow.style.css';
 import { selectCurrentSong } from '../../redux/reselect/songSelector';
+import { selectCurrentUser } from '../../redux/reselect/userSelector';
 
-const TrackRowComponent = ({ setCurrentSong, current, ...props }) => {
+const TrackRowComponent = ({
+  setCurrentSong,
+  setFavoutiteSong,
+  current,
+  currentUser,
+  ...props
+}) => {
   const { artistName, name, playbackSeconds, id } = props.track;
-
-  const currentId = current ? current.id : null;
 
   const calculateDuration = duration => {
     if (duration < 60) return `00.${duration}`;
@@ -32,7 +36,7 @@ const TrackRowComponent = ({ setCurrentSong, current, ...props }) => {
       return '';
     }
   };
-  // ${currentSong.id === id ? 'yes' : ''}
+
   return (
     <tr
       onClick={() => setCurrentTrack(props.track)}
@@ -45,12 +49,7 @@ const TrackRowComponent = ({ setCurrentSong, current, ...props }) => {
       </th>
       <td>{name}</td>
       <td>{artistName}</td>
-      <td>
-        {calculateDuration(playbackSeconds)}{' '}
-        <span className='favorite added'>
-          <FontAwesomeIcon icon={faHeartbeat} />
-        </span>
-      </td>
+      <td>{calculateDuration(playbackSeconds)} </td>
     </tr>
   );
 };
@@ -58,7 +57,10 @@ const TrackRowComponent = ({ setCurrentSong, current, ...props }) => {
 const mapStateToProps = (state, ownProps) => {
   return {
     current: selectCurrentSong(state),
+    currentUser: selectCurrentUser(state),
   };
 };
 
-export default connect(mapStateToProps, { setCurrentSong })(TrackRowComponent);
+export default connect(mapStateToProps, { setCurrentSong, setFavoutiteSong })(
+  TrackRowComponent
+);

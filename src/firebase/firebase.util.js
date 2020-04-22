@@ -2,7 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
-const config = {
+export const config = {
   apiKey: 'AIzaSyAoVYK_eE6QCKDdB_0CwubGidWf_IEwehk',
   authDomain: 'mussey-661fa.firebaseapp.com',
   databaseURL: 'https://mussey-661fa.firebaseio.com',

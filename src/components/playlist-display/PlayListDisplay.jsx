@@ -3,18 +3,44 @@ import TrackRowComponent from '../track-row/TrackRowComponent';
 import './playlist-display.style.css';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { selectCurrentSongList } from '../../redux/reselect/songSelector';
+import {
+  selectCurrentSongList,
+  selectFavourites,
+} from '../../redux/reselect/songSelector';
 import { fetchSongsAsync } from '../../redux/actions/songActions';
-const PlayListDisplay = ({ currentSongLists, fetchSongsAsync, ...props }) => {
+import { selectCurrentUser } from '../../redux/reselect/userSelector';
+import { fetchFavourites } from '../../redux/actions/songActions';
+
+const PlayListDisplay = ({
+  currentSongLists,
+  favouriteSongs,
+  currentUser,
+  fetchFavourites,
+  fetchSongsAsync,
+  selectFavourites,
+  ...props
+}) => {
+  const pathname = props.history.location.pathname;
   useEffect(() => {
+    if (currentUser) fetchFavourites(currentUser.id);
+
     if (props.history.location.pathname === '/') {
       fetchSongsAsync('/tracks/top');
-    } else if (props.history.location.pathname.includes('genres')) {
+    } else if (pathname.includes('genres')) {
       fetchSongsAsync(`/genres/${props.match.params.id}/tracks/top`);
-    } else if (props.history.location.pathname.includes('playlists')) {
+    } else if (pathname.includes('playlists')) {
       fetchSongsAsync(`/playlists/${props.match.params.id}/tracks`);
+    } else if (pathname.includes('playlists')) {
+      fetchSongsAsync(`/playlists/${props.match.params.id}/tracks`);
+    } else if (pathname.includes('favourites')) {
+      if (currentUser) fetchFavourites(currentUser.id);
     }
-  }, [props.history.location.pathname]);
+  }, [pathname]);
+
+  useEffect(() => {
+    console.log('user');
+    if (currentUser) fetchFavourites(currentUser.id);
+  }, [currentUser]);
 
   return (
     <section className='mussey-playlist scroll'>
@@ -39,11 +65,18 @@ const PlayListDisplay = ({ currentSongLists, fetchSongsAsync, ...props }) => {
 };
 
 const mapStateToProps = (state, ownProps) => {
+  const path = ownProps.history.location.pathname;
   return {
-    currentSongLists: selectCurrentSongList(state),
+    currentSongLists: path.includes('favourites')
+      ? selectFavourites(state)
+      : selectCurrentSongList(state),
+    currentUser: selectCurrentUser(state),
+    favouriteSongs: selectFavourites(state),
   };
 };
 
 export default withRouter(
-  connect(mapStateToProps, { fetchSongsAsync })(PlayListDisplay)
+  connect(mapStateToProps, { fetchSongsAsync, fetchFavourites })(
+    PlayListDisplay
+  )
 );

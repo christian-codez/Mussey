@@ -3,6 +3,7 @@ import { song_action_types } from '../types';
 const INITIAL_STATE = {
   genres: null,
   playlists: null,
+  favourites: null,
   currentSongList: null,
   currentSong: null,
 };
@@ -13,6 +14,8 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, genres: action.payload };
     case song_action_types.FETCH_PLAYLISTS:
       return { ...state, playlists: action.payload };
+    case song_action_types.FETCH_FAVOURITES:
+      return { ...state, favourites: action.payload };
     case song_action_types.FETCH_TRACKS:
       return { ...state, currentSongList: action.payload };
     case song_action_types.SET_CURRENT_TRACK:

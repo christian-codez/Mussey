@@ -9,8 +9,9 @@ import storage from 'redux-persist/lib/storage';
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['settings', 'songs'],
+  whitelist: ['settings'],
 };
+
 export const combinedReducers = persistReducer(
   persistConfig,
   combineReducers({

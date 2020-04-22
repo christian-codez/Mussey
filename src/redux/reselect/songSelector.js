@@ -12,6 +12,10 @@ export const selectMusicPlaylists = createSelector([selectSongs], songs =>
   songs.playlists ? songs.playlists : null
 );
 
+export const selectFavourites = createSelector([selectSongs], songs =>
+  songs.favourites ? songs.favourites.tracks : null
+);
+
 export const selectCurrentSongList = createSelector([selectSongs], songs =>
   songs.currentSongList ? songs.currentSongList.tracks : songs.currentSongList
 );
