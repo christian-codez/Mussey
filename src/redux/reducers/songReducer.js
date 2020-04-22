@@ -10,6 +10,8 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case song_action_types.TOGGLE_FAVOURITES:
+      return { ...state, favourites: action.payload };
     case song_action_types.FETCH_GENRES:
       return { ...state, genres: action.payload };
     case song_action_types.FETCH_PLAYLISTS:

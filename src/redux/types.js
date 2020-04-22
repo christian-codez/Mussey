@@ -6,6 +6,7 @@ export const song_action_types = {
   FETCH_TOP_10: 'FETCH_TOP_10',
   NEXT_SONG: 'NEXT_SONG',
   PREVIOUS_SONG: 'PREVIOUS_SONG',
+  TOGGLE_FAVOURITES: 'TOGGLE_FAVOURITES',
 };
 
 export const player_action_types = {

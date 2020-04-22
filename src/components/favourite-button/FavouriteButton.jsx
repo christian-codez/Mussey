@@ -1,14 +1,14 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import {} from '../../redux/actions/songActions';
+import { toggleFavourite } from '../../redux/actions/songActions';
 import { connect } from 'react-redux';
 import { selectCurrentUser } from '../../redux/reselect/userSelector';
 import { selectFavourites } from '../../redux/reselect/songSelector';
 import './favouritebutton.styles.css';
 const FavouriteButton = ({ track, currentUser, favouriteSongs }) => {
   const addToFavourite = () => {
-    //setFavoutiteSong({ track, uid: currentUser.id });
+    toggleFavourite({ track, uid: currentUser.id });
   };
 
   useEffect(() => {

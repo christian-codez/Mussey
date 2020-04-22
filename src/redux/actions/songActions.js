@@ -16,6 +16,18 @@ export const fetchGenresAsync = () => {
     }
   };
 };
+
+export const toggleFavourite = favouriteTrack => {
+  return async dispatch => {
+    try {
+      dispatch({
+        type: song_action_types.TOGGLE_FAVOURITES,
+        payload: favouriteTrack,
+      });
+    } catch (e) {}
+  };
+};
+
 export const fetchPlayAsync = () => {
   return async dispatch => {
     try {
