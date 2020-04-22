@@ -8,8 +8,11 @@ const middlewares = [thunk];
 export const store = createStore(
   combinedReducers,
   compose(
-    applyMiddleware(...middlewares),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    applyMiddleware(...middlewares)
+    // process.env.NODE_ENV === 'development'
+    //   ? window.__REDUX_DEVTOOLS_EXTENSION__ &&
+    //       window.__REDUX_DEVTOOLS_EXTENSION__()
+    //   : ''
   )
 );
 
