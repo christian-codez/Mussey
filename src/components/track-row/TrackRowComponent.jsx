@@ -2,7 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { setCurrentSong } from '../../redux/actions/songActions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMusic, faHeart } from '@fortawesome/free-solid-svg-icons';
+import {
+  faMusic,
+  faHeart,
+  faHeartbeat,
+} from '@fortawesome/free-solid-svg-icons';
 import './trackrow.style.css';
 import { selectCurrentSong } from '../../redux/reselect/songSelector';
 
@@ -44,7 +48,7 @@ const TrackRowComponent = ({ setCurrentSong, current, ...props }) => {
       <td>
         {calculateDuration(playbackSeconds)}{' '}
         <span className='favorite added'>
-          <FontAwesomeIcon icon={faHeart} />
+          <FontAwesomeIcon icon={faHeartbeat} />
         </span>
       </td>
     </tr>
