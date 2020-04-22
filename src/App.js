@@ -10,20 +10,11 @@ import { connect } from 'react-redux';
 const App = ({ createUserProfile, userSignOut }) => {
   useEffect(() => {
     const unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-      console.log(userAuth);
       if (userAuth) {
         createUserProfile(userAuth, {});
       } else {
         userSignOut();
       }
-
-      // const userRef = await createUserProfileDocument(userAuth);
-      // if (userAuth) {
-      //   userRef.onSnapshot(snapshot => {
-      //     setCurrentUser({ id: snapshot.id, ...snapshot.data() });
-      //   });
-      // }
-      // setCurrentUser(null);
     });
 
     return () => {

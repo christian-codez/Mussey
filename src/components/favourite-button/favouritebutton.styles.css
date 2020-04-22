@@ -1,0 +1,11 @@
+span.not-added.favorite {
+  color: #ffffffa8;
+}
+
+span.added.favorite {
+  color: #ff9c00;
+}
+
+div.favourite-action svg {
+  font-size: 25px;
+}

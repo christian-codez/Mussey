@@ -36,6 +36,7 @@ import {
   previousSong,
   setCurrentSong,
 } from '../../redux/actions/songActions';
+import FavouriteButton from '../favourite-button/FavouriteButton';
 
 const MusicControl = props => {
   const {
@@ -156,6 +157,7 @@ const MusicControl = props => {
         <div className={`${!song ? 'disabled' : ''} end-time`}>
           <span>{song ? (song.playbackSeconds / 60).toFixed(2) : '0.00'}</span>
         </div>
+        <FavouriteButton track={song} />
       </div>
 
       <div

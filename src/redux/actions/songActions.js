@@ -37,12 +37,6 @@ export const fetchPlayAsync = () => {
 export const fetchSongsAsync = endpoint => {
   return async dispatch => {
     try {
-      //run an async method to get the genres
-
-      // const response = await napsterAPI.get(
-      //   `/playlists/pp.253600731/tracks?apikey=ZTk2YjY4MjMtMDAzYy00MTg4LWE2MjYtZDIzNjJmMmM0YTdm&limit=200`
-      // );
-
       const response = await napsterAPI.get(
         `${endpoint}?apikey=${apiKey}&limit=200`
       );

@@ -5,6 +5,7 @@ const INITIAL_STATE = {
   playlists: null,
   currentSongList: null,
   currentSong: null,
+  favourites: null,
 };
 
 export default (state = INITIAL_STATE, action) => {

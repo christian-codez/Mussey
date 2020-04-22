@@ -45,12 +45,7 @@ const TrackRowComponent = ({ setCurrentSong, current, ...props }) => {
       </th>
       <td>{name}</td>
       <td>{artistName}</td>
-      <td>
-        {calculateDuration(playbackSeconds)}{' '}
-        <span className='favorite added'>
-          <FontAwesomeIcon icon={faHeartbeat} />
-        </span>
-      </td>
+      <td>{calculateDuration(playbackSeconds)} </td>
     </tr>
   );
 };

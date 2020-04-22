@@ -102,6 +102,19 @@ const HeaderComponent = ({
             )
             {currentUser ? (
               <li className='nav-item'>
+                <Link
+                  style={{ color: '#ff9c00' }}
+                  to='/favourites'
+                  className='nav-link'>
+                  <span className='badge badge-warning active-icon'>0</span>{' '}
+                  Favourite
+                </Link>
+              </li>
+            ) : (
+              ''
+            )}
+            {currentUser ? (
+              <li className='nav-item'>
                 <Link to='' onClick={() => auth.signOut()} className='nav-link'>
                   Sign Out
                 </Link>{' '}
