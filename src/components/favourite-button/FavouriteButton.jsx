@@ -6,18 +6,24 @@ import { connect } from 'react-redux';
 import { selectCurrentUser } from '../../redux/reselect/userSelector';
 import { selectFavourites } from '../../redux/reselect/songSelector';
 import './favouritebutton.styles.css';
-const FavouriteButton = ({ track, currentUser, favouriteSongs }) => {
+const FavouriteButton = props => {
+  const { track, currentUser, toggleFavourite, favouriteSongs } = props;
+  const [favourite, setSetFavourite] = useState(null);
   const addToFavourite = () => {
-    toggleFavourite({ track, uid: currentUser.id });
+    if (currentUser) toggleFavourite({ ...track, uid: currentUser.id });
   };
 
   useEffect(() => {
-    return () => {};
+    setSetFavourite(favouriteSongs);
+  }, []);
+
+  useEffect(() => {
+    setSetFavourite(favouriteSongs);
   }, [favouriteSongs]);
 
   const favouriteExists = () => {
-    if (favouriteSongs) {
-      return favouriteSongs.find(favourite => favourite.id === track.id)
+    if (favourite) {
+      return favourite.find(favourite => favourite.id === track.id)
         ? true
         : false;
     }
@@ -48,4 +54,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {})(FavouriteButton);
+export default connect(mapStateToProps, { toggleFavourite })(FavouriteButton);

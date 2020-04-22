@@ -13,7 +13,7 @@ export const selectMusicPlaylists = createSelector([selectSongs], songs =>
 );
 
 export const selectFavourites = createSelector([selectSongs], songs =>
-  songs.favourites ? songs.favourites.tracks : null
+  songs.favourites ? songs.favourites : null
 );
 
 export const selectCurrentSongList = createSelector([selectSongs], songs =>

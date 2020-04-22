@@ -1,5 +1,6 @@
 import { song_action_types } from '../types';
 import napsterAPI from '../../napsterConfig/api-config';
+import { firestore } from '../../firebase/firebase.util';
 
 const apiKey = 'NTFkNjVmZTktYWJkZC00YjJkLWIxMGMtNjc5NTkyMGNhMzcx';
 export const fetchGenresAsync = () => {
@@ -18,12 +19,41 @@ export const fetchGenresAsync = () => {
 };
 
 export const toggleFavourite = favouriteTrack => {
+  console.log('args:', favouriteTrack);
   return async dispatch => {
     try {
-      dispatch({
-        type: song_action_types.TOGGLE_FAVOURITES,
-        payload: favouriteTrack,
-      });
+      const favouriteRef = await firestore
+        .collection('favourites')
+        .doc(`${favouriteTrack.uid}`);
+
+      const favouriteSnapshot = await favouriteRef.get();
+      if (!favouriteSnapshot.exists) {
+        await favouriteRef.set({ tracks: [favouriteTrack] });
+      } else {
+        //use array some to check if that song exists
+        const existingFavourites = favouriteSnapshot.data().tracks;
+        console.log('existing:', existingFavourites);
+        //check if the track already exists
+        const result = existingFavourites.find(
+          trackItem => trackItem.id === favouriteTrack.id
+        );
+
+        let updatedFavourites;
+
+        if (result) {
+          updatedFavourites = existingFavourites.filter(
+            trackItem => favouriteTrack.id !== trackItem.id
+          );
+        } else {
+          updatedFavourites = [...existingFavourites, favouriteTrack];
+        }
+        await favouriteRef.update({ tracks: updatedFavourites });
+        console.log('Latest: ', updatedFavourites);
+        dispatch({
+          type: song_action_types.TOGGLE_FAVOURITES,
+          payload: updatedFavourites,
+        });
+      }
     } catch (e) {}
   };
 };

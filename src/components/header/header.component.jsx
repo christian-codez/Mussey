@@ -9,6 +9,7 @@ import {
 import {
   selectMusicGenres,
   selectMusicPlaylists,
+  selectFavourites,
 } from '../../redux/reselect/songSelector';
 import Logo from '../../img/mussey-logo.png';
 import { selectCurrentUser } from '../../redux/reselect/userSelector';
@@ -19,12 +20,14 @@ const HeaderComponent = ({
   playlists,
   fetchGenresAsync,
   fetchPlayAsync,
+  favouriteSongs,
   currentUser,
 }) => {
   useEffect(() => {
     (async () => {
       await fetchGenresAsync();
       await fetchPlayAsync();
+      console.log(favouriteSongs);
     })();
     return () => {};
   }, []);
@@ -106,7 +109,9 @@ const HeaderComponent = ({
                   style={{ color: '#ff9c00' }}
                   to='/favourites'
                   className='nav-link'>
-                  <span className='badge badge-warning active-icon'>0</span>{' '}
+                  <span className='badge badge-warning active-icon'>
+                    {favouriteSongs ? favouriteSongs.length : 0}
+                  </span>{' '}
                   Favourite
                 </Link>
               </li>
@@ -149,6 +154,7 @@ const mapStateToProps = (state, ownProps) => {
     musicgenres: selectMusicGenres(state),
     playlists: selectMusicPlaylists(state),
     currentUser: selectCurrentUser(state),
+    favouriteSongs: selectFavourites(state),
   };
 };
 
