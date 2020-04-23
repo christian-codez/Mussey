@@ -1,45 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import {
-  selectFavourites,
-  selectCurrentSongList,
-} from '../redux/reselect/songSelector';
+import { selectCurrentSong } from '../redux/reselect/songSelector';
 import { withRouter } from 'react-router-dom';
-export const MyContext = React.createContext();
+export const SongContext = React.createContext();
 
-const MyProvider = ({ favourite, currentSongLists, ...props }) => {
-  const [favouriteTracks, setFavouriteTracks] = useState(null);
-  const [playlists, setPlaylist] = useState(null);
-  const path = props.history.location.pathname;
-
-  useEffect(() => {
-    setFavouriteTracks(favourite);
-  }, [favourite]);
-
-  useEffect(() => {
-    setPlaylist(currentSongLists);
-  }, [currentSongLists]);
-
-  console.log(playlists);
-
+const SongContextProvider = ({
+  favourite,
+  currentSongLists,
+  song,
+  ...props
+}) => {
   return (
-    <MyContext.Provider
+    <SongContext.Provider
       value={{
-        favourite: favouriteTracks,
-        playlists: playlists,
+        song: song ? song : {},
       }}>
       {props.children}
-    </MyContext.Provider>
+    </SongContext.Provider>
   );
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const path = ownProps.history.location.pathname;
-
   return {
-    favourite: selectFavourites(state),
-    currentSongLists: selectCurrentSongList(state),
+    song: selectCurrentSong(state),
   };
 };
 
-export default withRouter(connect(mapStateToProps)(MyProvider));
+export default withRouter(connect(mapStateToProps)(SongContextProvider));

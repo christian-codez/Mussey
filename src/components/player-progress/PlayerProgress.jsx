@@ -1,25 +1,50 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment, useRef } from 'react';
 import './playerpogress.styles.css';
-const PlayerProgress = () => {
+import { connect } from 'react-redux';
+import { selectPlayerStatus } from '../../redux/reselect/playerSelector';
+
+const PlayerProgress = ({ song, audioRef, playerStatus }) => {
+  const [timeElapsed, setTimeElapsed] = useState('0.00');
+
+  useEffect(() => {
+    if (playerStatus === 'play') setInterval(updateTracker, 1000);
+  }, [playerStatus]);
+
+  function updateTracker() {
+    let currentTime = audioRef.current.currentTime;
+    setTimeElapsed((currentTime / 100).toFixed(2));
+    trackersliderRef.current.value = currentTime;
+  }
+
+  const trackersliderRef = useRef(null);
   return (
-    <div className='play-progress d-flex align-items-center justify-content-between'>
-      <div className='start-time'>
-        <span>0.00</span>
+    <Fragment>
+      <div className={`${!song ? 'disabled' : ''} start-time`}>
+        <span>{timeElapsed}</span>
       </div>
-      <div className='slider-control'>
+      <div className={`${!song ? 'disabled' : ''} slider-control`}>
         <input
           className='tracking-slider range'
           type='range'
+          ref={trackersliderRef}
+          id='tracking-slider'
           min='0'
           step='1'
-          max='216'
+          max={song ? song.playbackSeconds : ''}
+          defaultValue={0}
         />
       </div>
-      <div className='end-time'>
-        <span>0.00</span>
+      <div className={`${!song ? 'disabled' : ''} end-time`}>
+        <span>{song ? (song.playbackSeconds / 60).toFixed(2) : '0.00'}</span>
       </div>
-    </div>
+    </Fragment>
   );
 };
 
-export default PlayerProgress;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    playerStatus: selectPlayerStatus(state),
+  };
+};
+
+export default connect(mapStateToProps)(PlayerProgress);
