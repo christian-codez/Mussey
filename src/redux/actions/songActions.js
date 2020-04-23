@@ -18,6 +18,47 @@ export const fetchGenresAsync = () => {
   };
 };
 
+export const fetchFavourites = userId => {
+  return async dispatch => {
+    const favouriteRef = await firestore
+      .collection('favourites')
+      .doc(`${userId}`);
+
+    const favouriteSnapshot = await favouriteRef.get();
+
+    try {
+      if (favouriteSnapshot.exists) {
+        dispatch({
+          type: song_action_types.FETCH_FAVOURITES,
+          payload: favouriteSnapshot.data().tracks,
+        });
+      }
+    } catch (error) {
+      console.log('Error fetching favourite songs ', error);
+    }
+  };
+};
+export const addFavouritesToPlaylist = userId => {
+  return async dispatch => {
+    const favouriteRef = await firestore
+      .collection('favourites')
+      .doc(`${userId}`);
+    console.log(userId);
+    const favouriteSnapshot = await favouriteRef.get();
+
+    try {
+      if (favouriteSnapshot.exists) {
+        dispatch({
+          type: song_action_types.ADD_FAVOURITES_TO_CURRENT_SONG_LISTS,
+          payload: favouriteSnapshot.data(),
+        });
+      }
+    } catch (error) {
+      console.log('Error fetching favourite songs ', error);
+    }
+  };
+};
+
 export const toggleFavourite = favouriteTrack => {
   console.log('args:', favouriteTrack);
   return async dispatch => {

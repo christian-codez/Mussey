@@ -13,8 +13,8 @@ const defaultBgImage = {
   backgroundImage: `url(${BackgroundImage})`,
   backgroundRepeat: 'no-repeat',
   backgroundPosition: 'center',
-  height: '25%',
   padding: '0 5px',
+  minHeight: '14vh',
 };
 
 export default PlayListBanner;

@@ -12,6 +12,10 @@ export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case song_action_types.TOGGLE_FAVOURITES:
       return { ...state, favourites: action.payload };
+    case song_action_types.FETCH_FAVOURITES:
+      return { ...state, favourites: action.payload };
+    case song_action_types.ADD_FAVOURITES_TO_CURRENT_SONG_LISTS:
+      return { ...state, currentSongList: action.payload };
     case song_action_types.FETCH_GENRES:
       return { ...state, genres: action.payload };
     case song_action_types.FETCH_PLAYLISTS:

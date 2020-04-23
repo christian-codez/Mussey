@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import {
   fetchGenresAsync,
   fetchPlayAsync,
+  fetchFavourites,
 } from '../../redux/actions/songActions';
 import {
   selectMusicGenres,
@@ -20,6 +21,7 @@ const HeaderComponent = ({
   playlists,
   fetchGenresAsync,
   fetchPlayAsync,
+  fetchFavourites,
   favouriteSongs,
   currentUser,
 }) => {
@@ -27,10 +29,17 @@ const HeaderComponent = ({
     (async () => {
       await fetchGenresAsync();
       await fetchPlayAsync();
+      if (currentUser) await fetchFavourites(currentUser.id);
       console.log(favouriteSongs);
     })();
     return () => {};
   }, []);
+
+  useEffect(() => {
+    (async () => {
+      if (currentUser) await fetchFavourites(currentUser.id);
+    })();
+  }, [currentUser]);
 
   return (
     <header>
@@ -112,7 +121,7 @@ const HeaderComponent = ({
                   <span className='badge badge-warning active-icon'>
                     {favouriteSongs ? favouriteSongs.length : 0}
                   </span>{' '}
-                  Favourite
+                  Favourites
                 </Link>
               </li>
             ) : (
@@ -160,5 +169,6 @@ const mapStateToProps = (state, ownProps) => {
 
 export default connect(mapStateToProps, {
   fetchGenresAsync,
+  fetchFavourites,
   fetchPlayAsync,
 })(HeaderComponent);
