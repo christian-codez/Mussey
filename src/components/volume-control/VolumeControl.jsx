@@ -20,7 +20,6 @@ const VolumeControl = ({ audioRef, song, toggleVolume, volumeLevel }) => {
     const { value } = event.target;
     audioRef.current.volume = value;
     toggleVolume(value);
-    console.log('volume level', volumeLevel);
   };
 
   const increaseVolume = () => {

@@ -4,14 +4,22 @@ import $ from 'jquery';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {} from '@fortawesome/free-solid-svg-icons';
 import { signInWithGoogle } from '../../firebase/firebase.util';
-const SignIn = props => {
+import { auth } from '../../firebase/firebase.util';
+import { withRouter } from 'react-router-dom';
+const SignIn = ({ history, ...props }) => {
   useEffect(() => {
-    $('#musseyModal').modal('show');
+    const unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        $('#musseyModal').modal('hide');
+        history.push('/');
+      } else {
+        $('#musseyModal').modal('show');
+      }
+    });
   }, []);
 
   const signInWithGoogleAcoount = () => {
     signInWithGoogle();
-    console.log('signin with google');
   };
 
   return (
@@ -56,4 +64,4 @@ const SignIn = props => {
   );
 };
 
-export default SignIn;
+export default withRouter(SignIn);
