@@ -43,7 +43,6 @@ export const addFavouritesToPlaylist = userId => {
     const favouriteRef = await firestore
       .collection('favourites')
       .doc(`${userId}`);
-    console.log(userId);
     const favouriteSnapshot = await favouriteRef.get();
 
     try {
@@ -60,7 +59,6 @@ export const addFavouritesToPlaylist = userId => {
 };
 
 export const toggleFavourite = favouriteTrack => {
-  console.log('args:', favouriteTrack);
   return async dispatch => {
     try {
       const favouriteRef = await firestore

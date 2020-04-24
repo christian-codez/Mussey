@@ -11,3 +11,8 @@ export const selectRepeat = createSelector(
   [selectPlayer],
   player => player.repeat
 );
+
+export const selectRepeatQueue = createSelector(
+  [selectPlayer],
+  player => player.repeatQueue
+);

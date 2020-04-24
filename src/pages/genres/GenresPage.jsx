@@ -7,7 +7,7 @@ const HomePage = ({ playlists, fetchSongsAsync, ...props }) => {
   const paramsId = props.match.params.id;
   useEffect(() => {
     fetchSongsAsync(`/genres/${paramsId}/tracks/top`);
-  }, [playlists]);
+  }, []);
   return (
     <div>
       <MusicPlayer playlists={playlists} />

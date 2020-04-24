@@ -26,10 +26,10 @@ export const stopMusic = () => {
   };
 };
 
-export const repeatCurrentMusic = () => {
+export const repeatCurrentMusic = song => {
   return async dispatch => {
     try {
-      dispatch({ type: player_action_types.REPEAT_CURRENT });
+      dispatch({ type: player_action_types.REPEAT_CURRENT, payload: song });
     } catch (e) {
       console.log(e);
     }

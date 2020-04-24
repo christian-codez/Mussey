@@ -16,19 +16,26 @@ const PlayPauseButton = ({
   song,
   playerStatus,
   startMusic,
-  stopMusic,
   pauseMusic,
-  showNext,
   audioRef,
+  stopMusic,
+  nextSong,
+  showNext,
 }) => {
   const playSong = () => {
     startMusic();
     audioRef.current.play();
-    audioRef.current.onended = () => {
-      if (showNext) return nextSong();
-      stopMusic();
-    };
   };
+
+  useEffect(() => {
+    audioRef.current.onended = () => {
+      if (showNext) {
+        console.log('Ended');
+        stopMusic();
+        nextSong();
+      }
+    };
+  }, []);
 
   const pauseSong = () => {
     pauseMusic();
@@ -69,4 +76,5 @@ export default connect(mapStateToProps, {
   startMusic,
   stopMusic,
   pauseMusic,
+  nextSong,
 })(PlayPauseButton);

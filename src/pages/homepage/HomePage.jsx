@@ -6,7 +6,7 @@ import { fetchSongsAsync } from '../../redux/actions/songActions';
 const HomePage = ({ playlists, fetchSongsAsync }) => {
   useEffect(() => {
     fetchSongsAsync('/tracks/top');
-  }, [playlists]);
+  }, []);
   return (
     <div>
       <MusicPlayer playlists={playlists} />

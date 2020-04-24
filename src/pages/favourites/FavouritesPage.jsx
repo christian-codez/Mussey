@@ -7,7 +7,6 @@ import MusicPlayer from '../../containers/music-player/MusicPlayer';
 
 const FavouritePage = ({ playlists, currentUser, addFavouritesToPlaylist }) => {
   useEffect(() => {
-    console.log(currentUser);
     if (currentUser) addFavouritesToPlaylist(currentUser.id);
   }, [currentUser]);
   return (

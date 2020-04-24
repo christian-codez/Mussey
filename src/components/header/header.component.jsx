@@ -30,7 +30,6 @@ const HeaderComponent = ({
       await fetchGenresAsync();
       await fetchPlayAsync();
       if (currentUser) await fetchFavourites(currentUser.id);
-      console.log(favouriteSongs);
     })();
     return () => {};
   }, []);

@@ -5,7 +5,7 @@ import PreviousButton from '../previous-button/PreviousButton';
 import PlayPauseButton from '../play-pause-button/PlayPauseButton';
 import NextButton from '../next-button/NextButton';
 import StopButton from '../stop-button/StopButton';
-import RepeatButton from '../reapeat-button/RepeatButton';
+import RepeatButton from '../repeat-button/RepeatButton';
 import VolumeControl from '../volume-control/VolumeControl';
 import MusicReset from '../music-reset/MusicReset';
 import './musiccontrol.style.css';

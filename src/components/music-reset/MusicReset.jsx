@@ -8,6 +8,10 @@ const MusicReset = ({ song, audioRef, startMusic, stopMusic }) => {
     }
   }, [song]);
 
+  useEffect(() => {
+    stopSong();
+  }, []);
+
   const resetPlayer = () => {
     stopSong();
     audioRef.current.src = song.previewURL;

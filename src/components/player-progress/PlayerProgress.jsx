@@ -2,12 +2,19 @@ import React, { useState, useEffect, Fragment, useRef } from 'react';
 import './playerpogress.styles.css';
 import { connect } from 'react-redux';
 import { selectPlayerStatus } from '../../redux/reselect/playerSelector';
-
 const PlayerProgress = ({ song, audioRef, playerStatus }) => {
   const [timeElapsed, setTimeElapsed] = useState('0.00');
+  const trackersliderRef = useRef(null);
 
   useEffect(() => {
-    if (playerStatus === 'play') setInterval(updateTracker, 1000);
+    let intervalId;
+    if (playerStatus === 'play') {
+      console.log(' set');
+      intervalId = setInterval(updateTracker, 1000);
+    }
+    if (playerStatus === 'stopped') {
+      clearInterval(intervalId);
+    }
   }, [playerStatus]);
 
   function updateTracker() {
@@ -16,7 +23,6 @@ const PlayerProgress = ({ song, audioRef, playerStatus }) => {
     trackersliderRef.current.value = currentTime;
   }
 
-  const trackersliderRef = useRef(null);
   return (
     <Fragment>
       <div className={`${!song ? 'disabled' : ''} start-time`}>

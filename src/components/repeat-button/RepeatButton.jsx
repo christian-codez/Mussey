@@ -13,7 +13,7 @@ const RepeatButton = ({ song, repeat, repeatCurrentMusic, repeatNoMusic }) => {
     <Fragment>
       {repeat === 'none' ? (
         <div
-          onClick={() => repeatCurrentMusic()}
+          onClick={() => repeatCurrentMusic(song)}
           className={`${!song ? 'disabled' : ''} repeat-song pointer-cursor`}>
           <FontAwesomeIcon icon={faRedo} />
         </div>
