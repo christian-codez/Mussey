@@ -19,6 +19,7 @@ const MusicControl = ({ song }) => {
       <MusicReset song={song} audioRef={audioRef} />
       <audio
         id='musicaudio'
+        preload='none'
         style={{ display: 'none' }}
         className='raw-player'
         controls

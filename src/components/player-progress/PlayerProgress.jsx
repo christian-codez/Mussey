@@ -9,7 +9,6 @@ const PlayerProgress = ({ song, audioRef, playerStatus }) => {
   useEffect(() => {
     let intervalId;
     if (playerStatus === 'play') {
-      console.log(' set');
       intervalId = setInterval(updateTracker, 1000);
     }
     if (playerStatus === 'stopped') {

@@ -1,0 +1,17 @@
+form.signup {
+  border-top: 7px solid #ff9c00;
+  padding: 10px;
+  border-radius: 11px;
+  border-bottom: 7px solid #ff9c00;
+}
+
+.btn-dark-blue {
+  color: #fff;
+  background-color: #000f1e;
+  border-color: #000f1e;
+}
+.btn-dark-blue:hover {
+  color: #fff;
+  background-color: #ff9c00;
+  border-color: #ff9c00;
+}

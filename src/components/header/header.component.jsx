@@ -110,14 +110,16 @@ const HeaderComponent = ({
             ) : (
               ''
             )}
-            )
+
             {currentUser ? (
               <li className='nav-item'>
                 <Link
                   style={{ color: '#ff9c00' }}
                   to='/favourites'
                   className='nav-link'>
-                  <span className='badge badge-warning active-icon'>
+                  <span
+                    className='badge badge-warning active-icon'
+                    style={{ backgroundColor: '#ff9c00' }}>
                     {favouriteSongs ? favouriteSongs.length : 0}
                   </span>{' '}
                   Favourites
@@ -139,7 +141,7 @@ const HeaderComponent = ({
                 </Link>
               </li>
             )}
-            >
+
             {currentUser ? (
               <img
                 src={currentUser.photoURL}

@@ -4,19 +4,16 @@ import thunk from 'redux-thunk';
 import { persistStore } from 'redux-persist';
 
 const middlewares = [thunk];
+const reduxDevTools =
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 
-export const store =
-  process.env.NODE_ENV === 'development'
-    ? createStore(
-        combinedReducers,
-        compose(
-          applyMiddleware(...middlewares),
-          process.env.NODE_ENV === 'development'
-            ? window.__REDUX_DEVTOOLS_EXTENSION__ &&
-                window.__REDUX_DEVTOOLS_EXTENSION__()
-            : ''
-        )
-      )
-    : createStore(combinedReducers, compose(applyMiddleware(...middlewares)));
+export const store = createStore(
+  combinedReducers,
+  compose(applyMiddleware(...middlewares))
+);
+
+if (process.env.NODE_ENV === 'development') {
+} else {
+}
 
 export const persistor = persistStore(store);

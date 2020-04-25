@@ -2,7 +2,6 @@ import { createSelector } from 'reselect';
 
 const selectGenres = state => state.songs.genres;
 const selectSongs = state => state.songs;
-const selectPlayer = state => state.player;
 
 export const selectMusicGenres = createSelector([selectGenres], genres =>
   genres ? genres.genres : genres
@@ -51,4 +50,9 @@ export const selectPlayNext = createSelector(
 export const selectPlayPrev = createSelector(
   [selectCurrentSongIndex],
   currentTrack => (currentTrack === 1 ? false : true)
+);
+
+export const selectRepeat = createSelector(
+  [selectSongs],
+  songs => songs.repeat
 );

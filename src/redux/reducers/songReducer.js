@@ -5,6 +5,7 @@ const INITIAL_STATE = {
   playlists: null,
   currentSongList: null,
   currentSong: null,
+  repeat: 'none',
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -17,14 +18,22 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, currentSongList: action.payload };
     case song_action_types.SET_CURRENT_TRACK:
       return { ...state, currentSong: action.payload };
+    case song_action_types.REPEAT_CURRENT:
+      return { ...state, repeat: 'current' };
+    case song_action_types.REPEAT_NO_MUSIC:
+      return { ...state, repeat: 'none' };
     case song_action_types.NEXT_SONG:
       let nextTrack = state.currentSongList.tracks.findIndex(
         track => track.id === state.currentSong.id
       );
+
+      if (nextTrack + 1 === state.currentSongList.tracks.length)
+        return { ...state };
       return {
         ...state,
         currentSong: state.currentSongList.tracks[nextTrack + 1],
       };
+
     case song_action_types.PREVIOUS_SONG:
       let prevTrack = state.currentSongList.tracks.findIndex(
         track => track.id === state.currentSong.id

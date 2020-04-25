@@ -18,9 +18,21 @@ const MusicReset = ({ song, audioRef, startMusic, stopMusic }) => {
     playSong();
   };
 
-  const playSong = () => {
+  const playSong = async () => {
+    var playPromise = audioRef.current.play();
+
+    if (playPromise !== undefined) {
+      playPromise
+        .then(_ => {
+          startMusic();
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+
     startMusic();
-    audioRef.current.play();
+    //audioRef.current.play();
   };
 
   const stopSong = () => {

@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import {
   repeatCurrentMusic,
   repeatNoMusic,
-} from '../../redux/actions/playerActions';
-import { selectRepeat } from '../../redux/reselect/playerSelector';
+} from '../../redux/actions/songActions';
+import { selectRepeat } from '../../redux/reselect/songSelector';
 
 const RepeatButton = ({ song, repeat, repeatCurrentMusic, repeatNoMusic }) => {
   return (
