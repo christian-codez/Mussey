@@ -34,14 +34,19 @@ const MusicControl = ({ song }) => {
         <PlayerProgress song={song} audioRef={audioRef} />
         <FavouriteButton track={song} />
       </div>
-      <div
-        className={` controls d-flex justify-content-between align-items-center  `}>
-        <PreviousButton song={song} />
-        <PlayPauseButton song={song} audioRef={audioRef} />
-        <NextButton song={song} />
-        <StopButton song={song} audioRef={audioRef} />
-        <RepeatButton song={song} />
-        <VolumeControl song={song} audioRef={audioRef} />
+      <div className={` controls   `}>
+        <div className='row '>
+          <div className='col-md-6 col-sm-12 d-flex justify-content-between align-items-center'>
+            <PreviousButton song={song} />
+            <PlayPauseButton song={song} audioRef={audioRef} />
+            <NextButton song={song} />
+            <StopButton song={song} audioRef={audioRef} />
+            <RepeatButton song={song} />
+          </div>
+          <div className=' col-md-6 col-sm-12  d-flex justify-content-around align-items-center volume-container'>
+            <VolumeControl song={song} audioRef={audioRef} />
+          </div>
+        </div>
       </div>
     </Fragment>
   );

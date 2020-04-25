@@ -6,6 +6,7 @@
   font-family: 'Cormorant Upright', serif;
   font-size: 20px;
   border-left: 1px solid #ff9c00;
+  background-color: #010912;
 }
 
 @media only screen and (max-width: 992px) {
@@ -19,7 +20,7 @@
 @media only screen and (min-width: 1200px) {
   .mussey-playlist,
   .mussey-playlist table {
-    height: 50vh;
+    height: 49vh;
   }
 }
 
