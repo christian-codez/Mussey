@@ -13,6 +13,7 @@ import {
   selectFavourites,
 } from '../../redux/reselect/songSelector';
 import Logo from '../../img/mussey-logo.png';
+import DefaultUserProfileImage from '../../img/music-playart.jpg';
 import { selectCurrentUser } from '../../redux/reselect/userSelector';
 import { auth } from '../../firebase/firebase.util';
 
@@ -144,7 +145,11 @@ const HeaderComponent = ({
 
             {currentUser ? (
               <img
-                src={currentUser.photoURL}
+                src={
+                  currentUser.photoURL
+                    ? currentUser.photoURL
+                    : DefaultUserProfileImage
+                }
                 className='rounded-circle'
                 alt='Cinque Terre'
                 style={{ width: '40px', height: '40px' }}

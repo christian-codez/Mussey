@@ -16,7 +16,7 @@ const App = ({ createUserProfile, userSignOut }) => {
   useEffect(() => {
     const unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
-        createUserProfile(userAuth, {});
+        createUserProfile(userAuth, { userAuth });
       } else {
         userSignOut();
       }

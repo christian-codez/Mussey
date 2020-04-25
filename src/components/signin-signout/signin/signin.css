@@ -1,6 +1,6 @@
 .user_card {
-  height: 400px;
-  width: 350px;
+  min-height: 400px;
+  width: 95%;
   margin-top: auto;
   margin-bottom: auto;
   background: #ff9c00;
@@ -60,4 +60,8 @@
 }
 .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
   background-color: #c0392b !important;
+}
+
+.google-signin {
+  background: #007bff !important;
 }

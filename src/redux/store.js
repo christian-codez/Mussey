@@ -9,7 +9,7 @@ const reduxDevTools =
 
 export const store = createStore(
   combinedReducers,
-  compose(applyMiddleware(...middlewares))
+  compose(applyMiddleware(...middlewares), reduxDevTools)
 );
 
 if (process.env.NODE_ENV === 'development') {

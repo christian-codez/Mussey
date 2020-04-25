@@ -1,12 +1,14 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import Modal from '../custom-modal/Modal';
 import $ from 'jquery';
 import { auth } from '../../firebase/firebase.util';
 import { withRouter } from 'react-router-dom';
 import SignIn from './signin/SignIn';
 import Signup from './signup/Signup';
-
-const SignInSignOut = ({ history, ...props }) => {
+import { connect } from 'react-redux';
+import { faInfo } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+const SignInSignOut = ({ history, signInError, signUpError, ...props }) => {
   useEffect(() => {
     auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
@@ -22,7 +24,7 @@ const SignInSignOut = ({ history, ...props }) => {
     <Fragment>
       <Modal title={`SIGN IN`} redirectURL={`/`}>
         <div className='container'>
-          <div className='row'>
+          <div className='row d-flex align-items-center'>
             <div className='col-md-6 col-xs-12 mb-2'>
               {' '}
               <SignIn />
@@ -32,9 +34,27 @@ const SignInSignOut = ({ history, ...props }) => {
             </div>
           </div>
         </div>
+
+        {signInError || signUpError ? (
+          <div>
+            <hr />
+            <div className='alert alert-danger' role='alert'>
+              <FontAwesomeIcon icon={faInfo} /> {signUpError} {signInError}
+            </div>
+          </div>
+        ) : (
+          ''
+        )}
       </Modal>
     </Fragment>
   );
 };
 
-export default withRouter(SignInSignOut);
+const mapStateToProps = (state, ownProps) => {
+  return {
+    signInError: state.user.signInError,
+    signUpError: state.user.signUpError,
+  };
+};
+
+export default withRouter(connect(mapStateToProps)(SignInSignOut));

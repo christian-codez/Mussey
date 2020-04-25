@@ -4,8 +4,10 @@ import Logo from '../../../img/logo.png';
 import './signin.css';
 import { faUser, faKey, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { signIn } from '../../../redux/actions/userActions';
+import { connect } from 'react-redux';
 
-const SignIn = () => {
+const SignIn = ({ signIn, signInError }) => {
   const [userAuth, setUserAuth] = useState({ password: '', email: '' });
 
   const signInWithGoogleAcoount = () => {
@@ -21,7 +23,7 @@ const SignIn = () => {
 
   const handleFormSubmit = event => {
     event.preventDefault();
-    console.log(userAuth);
+    signIn(userAuth);
   };
   return (
     <div className='container h-100'>
@@ -32,6 +34,7 @@ const SignIn = () => {
               <img src={Logo} className='brand_logo' alt='Logo' />
             </div>
           </div>
+
           <div className='d-flex justify-content-center form_container'>
             <form onSubmit={handleFormSubmit}>
               <div className='input-group mb-3'>
@@ -43,6 +46,7 @@ const SignIn = () => {
                 <input
                   type='text'
                   name='email'
+                  required
                   onChange={handleInputChange}
                   className='form-control input_user'
                   value={userAuth.email}
@@ -58,25 +62,12 @@ const SignIn = () => {
                 <input
                   type='password'
                   name='password'
+                  required
                   onChange={handleInputChange}
                   className='form-control input_pass'
                   value={userAuth.password}
                   placeholder='password'
                 />
-              </div>
-              <div className='form-group'>
-                <div className='custom-control custom-checkbox'>
-                  <input
-                    type='checkbox'
-                    className='custom-control-input'
-                    id='customControlInline'
-                  />
-                  <label
-                    className='custom-control-label'
-                    htmlFor='customControlInline'>
-                    Remember me
-                  </label>
-                </div>
               </div>
               <div className='d-flex justify-content-center mt-3 login_container'>
                 <button type='submit' name='button' className='btn  login_btn'>
@@ -88,16 +79,18 @@ const SignIn = () => {
                   onClick={signInWithGoogleAcoount}
                   type='button'
                   name='button'
-                  className='btn login_btn'>
+                  className='btn login_btn google-signin'>
                   SIGN IN WITH GOOGLE
                 </button>
               </div>
             </form>
           </div>
 
-          <div className='mt-4 mb-2'>
+          <div className='mt-1 mb-2'>
             <div className='d-flex justify-content-center links'>
-              <a href='#'>Forgot your password?</a>
+              <a className='text-white' href='#'>
+                Forgot your password?
+              </a>
             </div>
           </div>
         </div>
@@ -105,5 +98,9 @@ const SignIn = () => {
     </div>
   );
 };
-
-export default SignIn;
+const mapStateToProps = state => {
+  return {
+    signInError: state.user.signInError,
+  };
+};
+export default connect(mapStateToProps, { signIn })(SignIn);
