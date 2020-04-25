@@ -34,7 +34,7 @@ const FavouriteButton = ({ fetchFavourites, ...props }) => {
     }
   };
 
-  if (track) {
+  if (track && currentUser) {
     return (
       <div
         onClick={addToFavourite}
