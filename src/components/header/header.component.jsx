@@ -27,12 +27,9 @@ const HeaderComponent = ({
   currentUser,
 }) => {
   useEffect(() => {
-    (async () => {
-      await fetchGenresAsync();
-      await fetchPlayAsync();
-      if (currentUser) await fetchFavourites(currentUser.id);
-    })();
-    return () => {};
+    fetchGenresAsync();
+    fetchPlayAsync();
+    if (currentUser) fetchFavourites(currentUser.id);
   }, []);
 
   useEffect(() => {

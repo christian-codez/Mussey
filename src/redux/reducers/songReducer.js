@@ -6,6 +6,7 @@ const INITIAL_STATE = {
   currentSongList: null,
   currentSong: null,
   repeat: 'none',
+  favourites: null,
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -22,6 +23,8 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, repeat: 'current' };
     case song_action_types.REPEAT_NO_MUSIC:
       return { ...state, repeat: 'none' };
+    case song_action_types.FETCH_FAVOURITES:
+      return { ...state, favourites: action.payload };
     case song_action_types.NEXT_SONG:
       let nextTrack = state.currentSongList.tracks.findIndex(
         track => track.id === state.currentSong.id

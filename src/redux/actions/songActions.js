@@ -25,7 +25,6 @@ export const fetchFavourites = userId => {
       .doc(`${userId}`);
 
     const favouriteSnapshot = await favouriteRef.get();
-
     try {
       if (favouriteSnapshot.exists) {
         dispatch({
@@ -71,7 +70,7 @@ export const toggleFavourite = favouriteTrack => {
       } else {
         //use array some to check if that song exists
         const existingFavourites = favouriteSnapshot.data().tracks;
-        console.log('existing:', existingFavourites);
+
         //check if the track already exists
         const result = existingFavourites.find(
           trackItem => trackItem.id === favouriteTrack.id
@@ -87,7 +86,7 @@ export const toggleFavourite = favouriteTrack => {
           updatedFavourites = [...existingFavourites, favouriteTrack];
         }
         await favouriteRef.update({ tracks: updatedFavourites });
-        console.log('Latest: ', updatedFavourites);
+
         dispatch({
           type: song_action_types.TOGGLE_FAVOURITES,
           payload: updatedFavourites,

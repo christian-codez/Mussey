@@ -1,18 +1,23 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import { toggleFavourite } from '../../redux/actions/songActions';
+import {
+  toggleFavourite,
+  fetchFavourites,
+} from '../../redux/actions/songActions';
 import { connect } from 'react-redux';
 import { selectCurrentUser } from '../../redux/reselect/userSelector';
 import { selectFavourites } from '../../redux/reselect/songSelector';
 import './favouritebutton.styles.css';
-const FavouriteButton = props => {
+const FavouriteButton = ({ fetchFavourites, ...props }) => {
   const { track, currentUser, toggleFavourite, favouriteSongs } = props;
   const [favourite, setSetFavourite] = useState(null);
-  const addToFavourite = () => {
-    if (currentUser) toggleFavourite({ ...track, uid: currentUser.id });
+  const addToFavourite = async () => {
+    if (currentUser) {
+      await toggleFavourite({ ...track, uid: currentUser.id });
+      await fetchFavourites(currentUser.id);
+    }
   };
-
   useEffect(() => {
     setSetFavourite(favouriteSongs);
   }, []);
@@ -54,4 +59,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { toggleFavourite })(FavouriteButton);
+export default connect(mapStateToProps, { toggleFavourite, fetchFavourites })(
+  FavouriteButton
+);
