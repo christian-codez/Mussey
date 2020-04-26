@@ -46,8 +46,9 @@ const PlayPauseButton = ({
         assignRepeatQueueToCurrentSong();
         playSong();
       }
-      scrollToCurrentPlaying(song);
     };
+
+    scrollToCurrentPlaying(song);
   }, [repeat, song]);
 
   const pauseSong = () => {

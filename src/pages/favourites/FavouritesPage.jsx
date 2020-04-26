@@ -4,11 +4,17 @@ import { selectFavourites } from '../../redux/reselect/songSelector';
 import { selectCurrentUser } from '../../redux/reselect/userSelector';
 import { addFavouritesToPlaylist } from '../../redux/actions/songActions';
 import MusicPlayer from '../../containers/music-player/MusicPlayer';
+import { withRouter } from 'react-router-dom';
 
-const FavouritePage = ({ playlists, currentUser, addFavouritesToPlaylist }) => {
+const FavouritePage = ({
+  playlists,
+  currentUser,
+  history,
+  addFavouritesToPlaylist,
+}) => {
   useEffect(() => {
     if (currentUser) addFavouritesToPlaylist(currentUser.id);
-  }, [currentUser]);
+  }, [currentUser, history.location]);
   return (
     <div>
       <MusicPlayer playlists={playlists} />
@@ -23,6 +29,6 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps, { addFavouritesToPlaylist })(
-  FavouritePage
+export default withRouter(
+  connect(mapStateToProps, { addFavouritesToPlaylist })(FavouritePage)
 );
