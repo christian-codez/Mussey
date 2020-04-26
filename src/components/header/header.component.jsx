@@ -141,16 +141,18 @@ const HeaderComponent = ({
             )}
 
             {currentUser ? (
-              <img
-                src={
-                  currentUser.photoURL
-                    ? currentUser.photoURL
-                    : DefaultUserProfileImage
-                }
-                className='rounded-circle'
-                alt='Cinque Terre'
-                style={{ width: '40px', height: '40px' }}
-              />
+              <Link to='/profile'>
+                <img
+                  src={
+                    currentUser.photoURL
+                      ? currentUser.photoURL
+                      : DefaultUserProfileImage
+                  }
+                  className='rounded-circle'
+                  alt='Cinque Terre'
+                  style={{ width: '40px', height: '40px' }}
+                />
+              </Link>
             ) : (
               ''
             )}

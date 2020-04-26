@@ -4,6 +4,7 @@ export const playSong = (audioRef, action) => {
 };
 
 export const scrollToCurrentPlaying = song => {
+  if (!song) return;
   const currentTrack = document.getElementById(song.id);
   if (currentTrack) {
     const topPos = currentTrack.offsetTop;
