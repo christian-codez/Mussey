@@ -9,10 +9,12 @@ import RepeatButton from '../repeat-button/RepeatButton';
 import VolumeControl from '../volume-control/VolumeControl';
 import MusicReset from '../music-reset/MusicReset';
 import './musiccontrol.style.css';
+import PlayArt from '../../img/music-playart.jpg';
 
 const MusicControl = ({ song }) => {
   const sourceRef = useRef(null);
   const audioRef = useRef(null);
+  const { name, artistName } = song ? song : { name: null, artistName: null };
 
   return (
     <Fragment>

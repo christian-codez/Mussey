@@ -4,7 +4,7 @@ import './playlist-display.style.css';
 
 const PlayListDisplay = ({ playlists, ...props }) => {
   return (
-    <section className='mussey-playlist scroll'>
+    <section className='mussey-playlist scroll' id='playlist-section'>
       <table className='table table-hover table-dark'>
         <tbody>
           {playlists &&

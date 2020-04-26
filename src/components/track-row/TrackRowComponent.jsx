@@ -37,7 +37,8 @@ const TrackRowComponent = ({ setCurrentSong, current, ...props }) => {
     <tr
       onClick={() => setCurrentTrack(props.track)}
       className={`${styleCurrentRow()} track-item`}
-      style={{ cursor: 'pointer' }}>
+      style={{ cursor: 'pointer' }}
+      id={id}>
       <th scope='row' className='music-icon'>
         <span className='playicon'>
           <FontAwesomeIcon icon={faMusic} />

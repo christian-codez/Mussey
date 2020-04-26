@@ -15,6 +15,7 @@ import {
 } from '../../redux/actions/playerActions';
 import { selectPlayerStatus } from '../../redux/reselect/playerSelector';
 import { selectPlayNext } from '../../redux/reselect/songSelector';
+import { scrollToCurrentPlaying } from '../../utils/songUtils';
 
 const PlayPauseButton = ({
   song,
@@ -40,12 +41,14 @@ const PlayPauseButton = ({
         nextSong();
       } else if (!showNext && repeat === 'all') {
         repeatAllSongsInPlaylist();
+        playSong();
       } else if (repeat === 'current') {
         assignRepeatQueueToCurrentSong();
         playSong();
       }
+      scrollToCurrentPlaying(song);
     };
-  }, [repeat]);
+  }, [repeat, song]);
 
   const pauseSong = () => {
     pauseMusic();
