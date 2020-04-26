@@ -36,15 +36,13 @@ export const selectCurrentSongIndex = createSelector(
   [selectSongs, selectCurrentSong],
   (songs, current) =>
     songs.currentSongList && current
-      ? songs.currentSongList.tracks.findIndex(
-          track => track.id === current.id
-        ) + 1
+      ? songs.currentSongList.tracks.findIndex(track => track.id === current.id)
       : null
 );
 
 export const selectPlayNext = createSelector(
   [selectCurrentSongIndex, selectSongListLength],
-  (currentTrack, TotalTracks) => (currentTrack < TotalTracks ? true : false)
+  (currentTrack, TotalTracks) => (currentTrack + 1 < TotalTracks ? true : false)
 );
 
 export const selectPlayPrev = createSelector(

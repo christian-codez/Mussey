@@ -163,6 +163,7 @@ export const repeatCurrentMusic = song => {
   return async dispatch => {
     try {
       dispatch({ type: song_action_types.REPEAT_CURRENT, payload: song });
+      dispatch({ type: song_action_types.SET_REPEAT_QUEUE });
     } catch (e) {
       console.log(e);
     }
@@ -171,7 +172,7 @@ export const repeatCurrentMusic = song => {
 export const repeaAllPlaylist = () => {
   return async dispatch => {
     try {
-      dispatch({ type: song_action_types.REPEAT_PLAYLIST });
+      dispatch({ type: song_action_types.REPEAT_ALL_MUSIC });
     } catch (e) {
       console.log(e);
     }
@@ -181,6 +182,25 @@ export const repeatNoMusic = () => {
   return async dispatch => {
     try {
       dispatch({ type: song_action_types.REPEAT_NO_MUSIC });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+
+export const assignRepeatQueueToCurrentSong = () => {
+  return async dispatch => {
+    try {
+      dispatch({ type: song_action_types.REPEAT_CURRENT_DISPATCHED });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+export const repeatAllSongsInPlaylist = () => {
+  return async dispatch => {
+    try {
+      dispatch({ type: song_action_types.REPEAT_ALL_DISPATCHED });
     } catch (e) {
       console.log(e);
     }

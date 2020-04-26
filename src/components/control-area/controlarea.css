@@ -27,7 +27,7 @@ section.mussey-controlarea {
 
 @media only screen and (min-width: 1200px) {
   section.mussey-controlarea {
-    padding: 52px 5px;
+    padding: 20px 5px;
     max-height: 29vh;
   }
 }

@@ -7,6 +7,7 @@ const INITIAL_STATE = {
   currentSong: null,
   repeat: 'none',
   favourites: null,
+  queuedSong: null,
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -22,11 +23,19 @@ export default (state = INITIAL_STATE, action) => {
     case song_action_types.REPEAT_CURRENT:
       return { ...state, repeat: 'current' };
     case song_action_types.REPEAT_NO_MUSIC:
-      return { ...state, repeat: 'none' };
+      return { ...state, repeat: 'none', queuedSong: null };
+    case song_action_types.REPEAT_ALL_MUSIC:
+      return { ...state, repeat: 'all', queuedSong: null };
     case song_action_types.FETCH_FAVOURITES:
       return { ...state, favourites: action.payload };
     case song_action_types.ADD_FAVOURITES_TO_CURRENT_SONG_LISTS:
       return { ...state, currentSongList: action.payload };
+    case song_action_types.SET_REPEAT_QUEUE:
+      return { ...state, queuedSong: state.currentSong };
+    case song_action_types.REPEAT_CURRENT_DISPATCHED:
+      return { ...state, currentSong: state.queuedSong };
+    case song_action_types.REPEAT_ALL_DISPATCHED:
+      return { ...state, currentSong: state.currentSongList.tracks[0] };
     case song_action_types.NEXT_SONG:
       let nextTrack = state.currentSongList.tracks.findIndex(
         track => track.id === state.currentSong.id

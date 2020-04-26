@@ -11,7 +11,7 @@ div.controls svg:hover {
 .next-song svg,
 .repeat-song svg {
   color: #fff;
-  font-size: 26px;
+  font-size: 20px;
   transition: all 1s;
 }
 

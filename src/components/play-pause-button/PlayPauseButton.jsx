@@ -1,6 +1,11 @@
 import React, { Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { previousSong } from '../../redux/actions/songActions';
+import {
+  previousSong,
+  assignRepeatQueueToCurrentSong,
+  repeatAllSongsInPlaylist,
+  nextSong,
+} from '../../redux/actions/songActions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons';
 import {
@@ -9,7 +14,6 @@ import {
   pauseMusic,
 } from '../../redux/actions/playerActions';
 import { selectPlayerStatus } from '../../redux/reselect/playerSelector';
-import { nextSong } from '../../redux/actions/songActions';
 import { selectPlayNext } from '../../redux/reselect/songSelector';
 
 const PlayPauseButton = ({
@@ -21,6 +25,8 @@ const PlayPauseButton = ({
   stopMusic,
   nextSong,
   showNext,
+  repeat,
+  repeatAllSongsInPlaylist,
 }) => {
   const playSong = () => {
     startMusic();
@@ -28,15 +34,18 @@ const PlayPauseButton = ({
   };
 
   useEffect(() => {
-    console.log('Play Pause Mounted');
     audioRef.current.onended = () => {
-      console.log('Ended:', showNext);
       stopMusic();
-      if (!showNext) {
+      if (showNext && repeat !== 'current') {
         nextSong();
+      } else if (!showNext && repeat === 'all') {
+        repeatAllSongsInPlaylist();
+      } else if (repeat === 'current') {
+        assignRepeatQueueToCurrentSong();
+        playSong();
       }
     };
-  }, []);
+  }, [repeat]);
 
   const pauseSong = () => {
     pauseMusic();
@@ -70,6 +79,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     playerStatus: selectPlayerStatus(state),
     showNext: selectPlayNext(state),
+    repeat: state.songs.repeat,
   };
 };
 
@@ -78,4 +88,5 @@ export default connect(mapStateToProps, {
   stopMusic,
   pauseMusic,
   nextSong,
+  repeatAllSongsInPlaylist,
 })(PlayPauseButton);

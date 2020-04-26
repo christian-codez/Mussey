@@ -1,0 +1,14 @@
+span.repeat-desc {
+  margin-left: 10px;
+  color: #ffffff;
+  vertical-align: top;
+}
+span.repeat-desc-active {
+  margin-left: 10px;
+  color: #ff9c00;
+  vertical-align: top;
+}
+
+.active {
+  color: #ff9c00 !important;
+}
