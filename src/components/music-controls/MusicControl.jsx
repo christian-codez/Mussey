@@ -36,7 +36,7 @@ const MusicControl = ({ song }) => {
       </div>
       <div className={` controls   `}>
         <div className='row '>
-          <div className='col-md-6 col-sm-12 d-flex justify-content-between align-items-center'>
+          <div className='col-md-6 col-sm-12 d-flex justify-content-between align-items-center play-action-controls'>
             <PreviousButton song={song} />
             <PlayPauseButton song={song} audioRef={audioRef} />
             <NextButton song={song} />

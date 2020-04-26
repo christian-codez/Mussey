@@ -13,3 +13,13 @@ span.music-author {
   color: #fff;
   font-family: 'Cormorant Upright', serif;
 }
+
+@media only screen and (max-width: 425px) {
+  .music-title {
+    font-size: 18px;
+  }
+
+  span.music-author {
+    font-size: 18px;
+  }
+}

@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { toggleVolume } from '../../redux/actions/settingsAction';
 import { connect } from 'react-redux';
 import { selectSettingsVolume } from '../../redux/reselect/settingsSelector';
-
+import './volumecontrol.css';
 const VolumeControl = ({ audioRef, song, toggleVolume, volumeLevel }) => {
   const volumeControllerRef = useRef(null);
 

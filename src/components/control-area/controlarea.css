@@ -18,6 +18,13 @@ section.mussey-controlarea {
   }
 }
 
+@media only screen and (max-width: 425px) {
+  section.mussey-controlarea {
+    padding: 15px 5px;
+    height: 27vh;
+  }
+}
+
 @media only screen and (min-width: 1200px) {
   section.mussey-controlarea {
     padding: 52px 5px;

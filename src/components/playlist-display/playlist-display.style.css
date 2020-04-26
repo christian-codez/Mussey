@@ -5,14 +5,24 @@
   overflow-x: hidden;
   font-family: 'Cormorant Upright', serif;
   font-size: 20px;
-  border-left: 1px solid #ff9c00;
   background-color: #010912;
+  border: 1px solid #313131;
 }
 
 @media only screen and (max-width: 992px) {
   .mussey-playlist,
   .mussey-playlist table {
     height: 38vh;
+  }
+}
+@media only screen and (max-width: 425px) {
+  .music-duration {
+    display: none;
+  }
+
+  .mussey-playlist,
+  .mussey-playlist table {
+    height: 64vh;
   }
 }
 

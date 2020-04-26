@@ -38,14 +38,16 @@ const TrackRowComponent = ({ setCurrentSong, current, ...props }) => {
       onClick={() => setCurrentTrack(props.track)}
       className={`${styleCurrentRow()} track-item`}
       style={{ cursor: 'pointer' }}>
-      <th scope='row'>
+      <th scope='row' className='music-icon'>
         <span className='playicon'>
           <FontAwesomeIcon icon={faMusic} />
         </span>
       </th>
-      <td>{name}</td>
-      <td>{artistName}</td>
-      <td>{calculateDuration(playbackSeconds)} </td>
+      <td>
+        {name} ({artistName})
+      </td>
+
+      <td className='music-duration'>{calculateDuration(playbackSeconds)} </td>
     </tr>
   );
 };

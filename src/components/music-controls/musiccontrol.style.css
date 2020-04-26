@@ -56,3 +56,10 @@ div.controls svg:hover {
 .range {
   cursor: pointer;
 }
+
+/* MOBILE DEVICES */
+@media only screen and (max-width: 425px) {
+  .play-action-controls svg {
+    font-size: 18px;
+  }
+}

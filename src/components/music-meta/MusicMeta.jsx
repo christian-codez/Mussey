@@ -13,7 +13,7 @@ const MusicMeta = ({ title, artistName, playerStatus }) => {
         <div className='music-label'>
           <CustomImage
             src={PlayArt}
-            className={`rounded-circle ${
+            className={`rounded-circle playart ${
               playerStatus === 'play' ? 'loading' : ''
             } `}
           />

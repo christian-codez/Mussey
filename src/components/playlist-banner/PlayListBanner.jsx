@@ -1,9 +1,12 @@
 import React from 'react';
 import BackgroundImage from '../../img/default-banner.jpg';
 import AuthorMeta from '../author-meta/AuthorMeta';
+import './playlistbanner.css';
 const PlayListBanner = () => {
   return (
-    <section className='d-flex align-items-center' style={defaultBgImage}>
+    <section
+      className='d-flex align-items-center music-banner'
+      style={defaultBgImage}>
       <AuthorMeta />
     </section>
   );
