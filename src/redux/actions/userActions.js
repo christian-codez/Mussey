@@ -1,6 +1,7 @@
 import { user_action_types } from '../types';
 import { firestore } from '../../firebase/firebase.util';
 import firebase from 'firebase';
+import { handleFireBaseUpload } from '../../utils/imageUtils';
 
 export const createUserProfile = (userAuth, additionalData = {}) => {
   return async dispatch => {
@@ -99,6 +100,35 @@ export const userSignOut = () => {
         payload: null,
       });
     } catch (e) {
+      console.log(e);
+    }
+  };
+};
+export const updateUserProfile = updatedUserInfo => {
+  return async dispatch => {
+    try {
+      let userInfo = {
+        displayName: `${updatedUserInfo.firstname} ${updatedUserInfo.lastname}`,
+      };
+
+      if (updatedUserInfo.imageAsFile) {
+        let imageURL = await handleFireBaseUpload(updatedUserInfo.imageAsFile);
+        userInfo = imageURL ? { ...userInfo, photoURL: imageURL } : userInfo;
+      }
+
+      const response = await firestore
+        .collection('users')
+        .doc(`${updatedUserInfo.id}`)
+        .update(userInfo);
+
+      dispatch({
+        type: user_action_types.UPDATE_USER_PROFILE_SUCCESS,
+      });
+    } catch (e) {
+      dispatch({
+        type: user_action_types.USER_PROFILE_FAILURE,
+        payload: null,
+      });
       console.log(e);
     }
   };

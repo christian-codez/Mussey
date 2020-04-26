@@ -3,6 +3,7 @@ import songReducer from '../reducers/songReducer';
 import userReducer from '../reducers/userReducer';
 import playerReducer from '../reducers/playerReducer';
 import settingsReducer from '../reducers/settingsReducer';
+import { firebaseReducer } from 'react-redux-firebase';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
@@ -18,5 +19,6 @@ export const combinedReducers = persistReducer(
     user: userReducer,
     player: playerReducer,
     settings: settingsReducer,
+    firebase: firebaseReducer,
   })
 );

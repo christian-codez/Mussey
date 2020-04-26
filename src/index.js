@@ -9,13 +9,16 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import * as serviceWorker from './serviceWorker';
 import './index.css';
 import App from './App';
+import SplashScreen from './splash/splashScreen';
 
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <PersistGate loading={null} persistor={persistor}>
         <React.StrictMode>
-          <App />
+          <SplashScreen>
+            <App />
+          </SplashScreen>
         </React.StrictMode>
       </PersistGate>
     </BrowserRouter>

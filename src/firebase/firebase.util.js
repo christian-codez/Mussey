@@ -1,8 +1,9 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
+import 'firebase/storage';
 
-const config = {
+export const config = {
   apiKey: 'AIzaSyAoVYK_eE6QCKDdB_0CwubGidWf_IEwehk',
   authDomain: 'mussey-661fa.firebaseapp.com',
   databaseURL: 'https://mussey-661fa.firebaseio.com',
@@ -14,6 +15,8 @@ const config = {
 
 // Initialize Firebase
 firebase.initializeApp(config);
+
+export const storage = firebase.storage();
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();

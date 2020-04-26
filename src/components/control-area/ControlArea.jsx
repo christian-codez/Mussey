@@ -10,8 +10,12 @@ const ControlArea = ({ song }) => {
   return (
     <section className='mussey-controlarea'>
       <div className='container'>
-        <MusicMeta title={name} artistName={artistName} />
-        <MusicControl song={song} />
+        <div className='row'>
+          <div className='col'>
+            <MusicMeta title={name} artistName={artistName} />
+            <MusicControl song={song} />
+          </div>
+        </div>
       </div>
     </section>
   );
