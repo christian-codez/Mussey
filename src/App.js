@@ -11,6 +11,7 @@ import HomePage from './pages/homepage/HomePage';
 import FavouritePage from './pages/favourites/FavouritesPage';
 import GenresPage from './pages/genres/GenresPage';
 import PlaylistPage from './pages/playlists/PlaylistPage';
+import ProfilePage from './pages/profile/ProfilePage';
 
 const App = ({ createUserProfile, userSignOut }) => {
   useEffect(() => {
@@ -38,6 +39,7 @@ const App = ({ createUserProfile, userSignOut }) => {
               <Route exact path='/playlists/:id' component={PlaylistPage} />
               <Route exact path='/favourites' component={FavouritePage} />
               <Route exact path='/signin' component={SignInSignOut} />
+              <Route exact path='/profile' component={ProfilePage} />
             </Switch>
           </div>
         </div>

@@ -47,7 +47,7 @@ export const selectPlayNext = createSelector(
 
 export const selectPlayPrev = createSelector(
   [selectCurrentSongIndex],
-  currentTrack => (currentTrack === 1 ? false : true)
+  currentTrack => (currentTrack === 0 ? false : true)
 );
 
 export const selectRepeat = createSelector(
