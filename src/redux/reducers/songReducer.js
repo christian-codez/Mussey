@@ -25,6 +25,8 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, repeat: 'none' };
     case song_action_types.FETCH_FAVOURITES:
       return { ...state, favourites: action.payload };
+    case song_action_types.ADD_FAVOURITES_TO_CURRENT_SONG_LISTS:
+      return { ...state, currentSongList: action.payload };
     case song_action_types.NEXT_SONG:
       let nextTrack = state.currentSongList.tracks.findIndex(
         track => track.id === state.currentSong.id

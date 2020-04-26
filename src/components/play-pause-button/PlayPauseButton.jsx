@@ -28,10 +28,11 @@ const PlayPauseButton = ({
   };
 
   useEffect(() => {
+    console.log('Play Pause Mounted');
     audioRef.current.onended = () => {
-      if (showNext) {
-        console.log('Ended');
-        stopMusic();
+      console.log('Ended:', showNext);
+      stopMusic();
+      if (!showNext) {
         nextSong();
       }
     };

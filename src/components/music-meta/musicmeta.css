@@ -12,4 +12,8 @@
     height: 72px;
     border: 3px solid rgb(126, 126, 126);
   }
+
+  .music-meta {
+    padding: 10px;
+  }
 }
