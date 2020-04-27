@@ -9,6 +9,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import './trackrow.style.css';
 import { selectCurrentSong } from '../../redux/reselect/songSelector';
+import { createStructuredSelector } from 'reselect';
 
 const TrackRowComponent = ({ setCurrentSong, current, ...props }) => {
   const { artistName, name, playbackSeconds, id } = props.track;
@@ -53,10 +54,9 @@ const TrackRowComponent = ({ setCurrentSong, current, ...props }) => {
   );
 };
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    current: selectCurrentSong(state),
-  };
-};
+const mapStateToProps = () =>
+  createStructuredSelector({
+    current: selectCurrentSong,
+  });
 
 export default connect(mapStateToProps, { setCurrentSong })(TrackRowComponent);

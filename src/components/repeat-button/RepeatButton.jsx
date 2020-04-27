@@ -9,6 +9,7 @@ import {
 } from '../../redux/actions/songActions';
 import { selectRepeat } from '../../redux/reselect/songSelector';
 import './repeatbutton.css';
+import { createStructuredSelector } from 'reselect';
 
 const RepeatButton = ({
   song,
@@ -53,11 +54,10 @@ const RepeatButton = ({
   );
 };
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    repeat: selectRepeat(state),
-  };
-};
+const mapStateToProps = () =>
+  createStructuredSelector({
+    repeat: selectRepeat,
+  });
 
 export default connect(mapStateToProps, {
   repeatCurrentMusic,

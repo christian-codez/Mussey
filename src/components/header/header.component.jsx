@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './header.styles.css';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -26,6 +26,8 @@ const HeaderComponent = ({
   favouriteSongs,
   currentUser,
 }) => {
+  const [menudisplay, setMenuVisibility] = useState(false);
+
   useEffect(() => {
     fetchGenresAsync();
     fetchPlayAsync();
@@ -38,23 +40,27 @@ const HeaderComponent = ({
     })();
   }, [currentUser]);
 
+  const toggleMenuState = () => setMenuVisibility(!menudisplay);
+
+  const toggleMenuDisplay = () => (menudisplay ? 'show' : '');
+
   return (
     <header>
       <nav className='navbar navbar-expand-md navbar-dark mussey-nav-header bg-dark'>
         <Link className='navbar-brand' to='/'>
-          <img src={Logo} style={{ width: '157px' }} />
+          <img alt={'site-logo'} src={Logo} style={{ width: '157px' }} />
         </Link>
         <button
           className='navbar-toggler'
           type='button'
-          data-toggle='collapse'
-          data-target='#navbarCollapse'
-          aria-controls='navbarCollapse'
-          aria-expanded='false'
-          aria-label='Toggle navigation'>
+          onClick={toggleMenuState}
+          style={{ borderColor: '#ff9c00' }}
+          id='toggleMenu'>
           <span className='navbar-toggler-icon'></span>
         </button>
-        <div className='collapse navbar-collapse' id='navbarCollapse'>
+        <div
+          className={`collapse navbar-collapse ${toggleMenuDisplay()} `}
+          id='navbarCollapse'>
           <ul className='navbar-nav ml-auto'>
             {musicgenres ? (
               <li className='nav-item dropdown'>

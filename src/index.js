@@ -9,7 +9,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import * as serviceWorker from './serviceWorker';
 import './index.css';
 import App from './App';
-import SplashScreen from './splash/splashScreen';
+import SplashScreen from './components/splash/splashScreen';
 
 ReactDOM.render(
   <Provider store={store}>

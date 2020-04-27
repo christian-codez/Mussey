@@ -10,22 +10,24 @@ import { selectCurrentUser } from '../../redux/reselect/userSelector';
 import { selectFavourites } from '../../redux/reselect/songSelector';
 import './favouritebutton.styles.css';
 const FavouriteButton = ({ fetchFavourites, ...props }) => {
+  //extract props params
   const { track, currentUser, toggleFavourite, favouriteSongs } = props;
+
   const [favourite, setSetFavourite] = useState(null);
+
+  //Add or remove a song from favourites
   const addToFavourite = async () => {
     if (currentUser) {
       await toggleFavourite({ ...track, uid: currentUser.id });
       await fetchFavourites(currentUser.id);
     }
   };
-  useEffect(() => {
-    setSetFavourite(favouriteSongs);
-  }, []);
 
   useEffect(() => {
     setSetFavourite(favouriteSongs);
   }, [favouriteSongs]);
 
+  //Check if a song is in the favourites array
   const favouriteExists = () => {
     if (favourite) {
       return favourite.find(favourite => favourite.id === track.id)

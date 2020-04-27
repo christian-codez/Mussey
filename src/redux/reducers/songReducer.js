@@ -8,6 +8,8 @@ const INITIAL_STATE = {
   repeat: 'none',
   favourites: null,
   queuedSong: null,
+  currentSongList_copy: null,
+  searchTerm: null,
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -17,7 +19,51 @@ export default (state = INITIAL_STATE, action) => {
     case song_action_types.FETCH_PLAYLISTS:
       return { ...state, playlists: action.payload };
     case song_action_types.FETCH_TRACKS:
-      return { ...state, currentSongList: action.payload };
+      return {
+        ...state,
+        currentSongList: action.payload,
+        currentSongList_copy: null,
+      };
+    case song_action_types.SEARCHING_SONG_STARTED:
+      let searchInput = action.payload;
+
+      //At the initial search, current song list into a temp state variable
+      state = {
+        ...state,
+        currentSongList_copy: state.currentSongList_copy
+          ? state.currentSongList_copy
+          : state.currentSongList,
+      };
+
+      //if the searchTerm changes and it is greater than zero
+      //reassign the copied over song list above into current son list before searhcing
+      if (searchInput !== state.searchTerm && searchInput.length > 0) {
+        state = {
+          ...state,
+          currentSongList: state.currentSongList_copy,
+        };
+      }
+
+      //if there is a search input
+      if (searchInput) {
+        const filtered_song = state.currentSongList.tracks.filter(
+          song =>
+            song.name.toLowerCase().match(action.payload) ||
+            song.artistName.toLowerCase().match(action.payload)
+        );
+        return {
+          ...state,
+          currentSongList: { tracks: filtered_song },
+          searchTerm: action.payload,
+        };
+      } else {
+        return {
+          ...state,
+          currentSongList: state.currentSongList_copy,
+          searchTerm: null,
+        };
+      }
+
     case song_action_types.SET_CURRENT_TRACK:
       return { ...state, currentSong: action.payload };
     case song_action_types.REPEAT_CURRENT:
@@ -29,7 +75,11 @@ export default (state = INITIAL_STATE, action) => {
     case song_action_types.FETCH_FAVOURITES:
       return { ...state, favourites: action.payload };
     case song_action_types.ADD_FAVOURITES_TO_CURRENT_SONG_LISTS:
-      return { ...state, currentSongList: action.payload };
+      return {
+        ...state,
+        currentSongList: action.payload,
+        currentSongList_copy: null,
+      };
     case song_action_types.SET_REPEAT_QUEUE:
       return { ...state, queuedSong: state.currentSong };
     case song_action_types.REPEAT_CURRENT_DISPATCHED:

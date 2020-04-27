@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import './controlarea.css';
+import React from 'react';
+import { connect } from 'react-redux';
 import MusicMeta from '../music-meta/MusicMeta';
 import MusicControl from '../music-controls/MusicControl';
-import { connect } from 'react-redux';
 import { selectCurrentSong } from '../../redux/reselect/songSelector';
+import './controlarea.css';
 
 const ControlArea = ({ song }) => {
   const { name, artistName } = song ? song : { name: null, artistName: null };
@@ -21,10 +21,10 @@ const ControlArea = ({ song }) => {
   );
 };
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = state => {
   return {
     song: selectCurrentSong(state),
   };
 };
 
-export default connect(mapStateToProps, {})(ControlArea);
+export default connect(mapStateToProps, null)(ControlArea);

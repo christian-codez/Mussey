@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { selectFavourites } from '../../redux/reselect/songSelector';
+import {
+  selectFavourites,
+  selectCurrentSongList,
+} from '../../redux/reselect/songSelector';
 import { selectCurrentUser } from '../../redux/reselect/userSelector';
 import { addFavouritesToPlaylist } from '../../redux/actions/songActions';
 import MusicPlayer from '../../containers/music-player/MusicPlayer';
@@ -26,6 +29,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     playlists: selectFavourites(state),
     currentUser: selectCurrentUser(state),
+    currentSongList: selectCurrentSongList(state),
   };
 };
 

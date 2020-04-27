@@ -14,7 +14,6 @@ import PlayArt from '../../img/music-playart.jpg';
 const MusicControl = ({ song }) => {
   const sourceRef = useRef(null);
   const audioRef = useRef(null);
-  const { name, artistName } = song ? song : { name: null, artistName: null };
 
   return (
     <Fragment>

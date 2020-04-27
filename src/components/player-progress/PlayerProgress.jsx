@@ -2,6 +2,7 @@ import React, { useState, useEffect, Fragment, useRef } from 'react';
 import './playerpogress.styles.css';
 import { connect } from 'react-redux';
 import { selectPlayerStatus } from '../../redux/reselect/playerSelector';
+import { createStructuredSelector } from 'reselect';
 const PlayerProgress = ({ song, audioRef, playerStatus }) => {
   const [timeElapsed, setTimeElapsed] = useState('0.00');
   const trackersliderRef = useRef(null);
@@ -46,10 +47,9 @@ const PlayerProgress = ({ song, audioRef, playerStatus }) => {
   );
 };
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    playerStatus: selectPlayerStatus(state),
-  };
-};
+const mapStateToProps = () =>
+  createStructuredSelector({
+    playerStatus: selectPlayerStatus,
+  });
 
 export default connect(mapStateToProps)(PlayerProgress);

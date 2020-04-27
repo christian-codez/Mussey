@@ -1,6 +1,6 @@
 section.mussey-controlarea {
   padding: 45px 5px;
-  position: absolute;
+  position: fixed;
   background-color: #001e3c;
   bottom: 0;
   height: 42vh;

@@ -206,3 +206,15 @@ export const repeatAllSongsInPlaylist = () => {
     }
   };
 };
+export const searchSong = input => {
+  return async dispatch => {
+    try {
+      dispatch({
+        type: song_action_types.SEARCHING_SONG_STARTED,
+        payload: input,
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};

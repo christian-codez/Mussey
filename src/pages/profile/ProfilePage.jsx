@@ -56,7 +56,7 @@ const ProfilePage = ({
     <section className='profile-page scroll mt-3'>
       <div className='container py-5 px-5'>
         <div className='row'>
-          <div className='col-md-3 user-info-col col-sm-12'>
+          <div className='col-md-3 mt-3 user-info-col col-sm-12'>
             <img
               style={{
                 borderRadius: '85px 20px ',
@@ -117,7 +117,7 @@ const ProfilePage = ({
             </ul>
           </div>
           {/*  End of left col*/}
-          <div className='col-md-9 col-sm-12'>
+          <div className='col-md-9 mt-3 col-sm-12'>
             <div className='profile-head'>
               <h5>{`${userInfo.firstname} ${userInfo.lastname}`}</h5>
               <h6 className='text-primary'>{userInfo.email}</h6>

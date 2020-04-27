@@ -1,7 +1,7 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
 import { withRouter } from 'react-router-dom';
-const Modal = ({ redirectURL, deleteProduct, history, children }) => {
+const Modal = ({ redirectURL, history, children }) => {
   return createPortal(
     <div
       className='modal fade'

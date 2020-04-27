@@ -4,6 +4,7 @@ import { faBackward } from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
 import { previousSong } from '../../redux/actions/songActions';
 import { selectPlayPrev } from '../../redux/reselect/songSelector';
+import { createStructuredSelector } from 'reselect';
 
 const PreviousButton = ({ song, showPrev, previousSong }) => {
   return (
@@ -19,10 +20,9 @@ const PreviousButton = ({ song, showPrev, previousSong }) => {
   );
 };
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    showPrev: selectPlayPrev(state),
-  };
-};
+const mapStateToProps = () =>
+  createStructuredSelector({
+    showPrev: selectPlayPrev,
+  });
 
 export default connect(mapStateToProps, { previousSong })(PreviousButton);

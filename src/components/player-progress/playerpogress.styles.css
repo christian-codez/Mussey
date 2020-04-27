@@ -64,7 +64,6 @@
 
 .range::-ms-tooltip {
   display: none;
-  /* display and visibility only */
 }
 
 .range::-moz-range-thumb {

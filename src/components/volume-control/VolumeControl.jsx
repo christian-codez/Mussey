@@ -9,6 +9,7 @@ import { toggleVolume } from '../../redux/actions/settingsAction';
 import { connect } from 'react-redux';
 import { selectSettingsVolume } from '../../redux/reselect/settingsSelector';
 import './volumecontrol.css';
+import { createStructuredSelector } from 'reselect';
 const VolumeControl = ({ audioRef, song, toggleVolume, volumeLevel }) => {
   const volumeControllerRef = useRef(null);
 
@@ -88,9 +89,8 @@ const VolumeControl = ({ audioRef, song, toggleVolume, volumeLevel }) => {
   }
 };
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    volumeLevel: selectSettingsVolume(state),
-  };
-};
+const mapStateToProps = () =>
+  createStructuredSelector({
+    volumeLevel: selectSettingsVolume,
+  });
 export default connect(mapStateToProps, { toggleVolume })(VolumeControl);

@@ -1,5 +1,15 @@
+section.mobile-search-section {
+  display: none;
+}
+
 @media only screen and (max-width: 425px) {
   .music-banner {
     display: none !important;
+  }
+
+  section.mobile-search-section {
+    margin-top: 10px;
+    margin-bottom: -7px;
+    display: block;
   }
 }

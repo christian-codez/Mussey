@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import AuthorMeta from '../author-meta/AuthorMeta';
 import CustomImage from '../custom-image/CustomImage';
 import PlayArt from '../../img/music-playart.jpg';
 import './musicmeta.css';
 import { selectPlayerStatus } from '../../redux/reselect/playerSelector';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 const MusicMeta = ({ title, artistName, playerStatus }) => {
   if (title) {
@@ -22,14 +23,13 @@ const MusicMeta = ({ title, artistName, playerStatus }) => {
       </div>
     );
   } else {
-    return <div></div>;
+    return <Fragment></Fragment>;
   }
 };
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    playerStatus: selectPlayerStatus(state),
-  };
-};
+const mapStateToProps = () =>
+  createStructuredSelector({
+    playerStatus: selectPlayerStatus,
+  });
 
 export default connect(mapStateToProps, null)(MusicMeta);
