@@ -20,10 +20,10 @@ const SearchField = ({ searchSong }) => {
           onChange={handleSearchChange}
           style={{ fontFamily: 'Cormorant Upright', fontSize: '20px' }}
           type='text'
-          className='form-control'
+          className='form-control search-input'
           placeholder='Enter song title or artist name '
-          aria-label="Recipient's username"
-          aria-describedby='basic-addon2'
+          aria-label='Search keyword'
+          aria-describedby='Search keyword'
         />
       </div>
     </form>

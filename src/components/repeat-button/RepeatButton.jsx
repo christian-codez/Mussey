@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { faBan, faRedo, faHistory } from '@fortawesome/free-solid-svg-icons';
+import { faBan, faRedo, faSync } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { connect } from 'react-redux';
 import {
@@ -44,7 +44,7 @@ const RepeatButton = ({
         <div
           onClick={() => repeatNoMusic()}
           className={`${!song ? 'disabled' : ''} repeat-song pointer-cursor`}>
-          <FontAwesomeIcon className='active' icon={faHistory} />
+          <FontAwesomeIcon className='active' icon={faSync} />
           <span className='repeat-desc-active'>Repeat {repeat}</span>
         </div>
       ) : (

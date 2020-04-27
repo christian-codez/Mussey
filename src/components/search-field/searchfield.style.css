@@ -2,3 +2,7 @@ button.search-button {
   background-color: #ff9c00;
   color: #fff;
 }
+
+.search-input {
+  border: 2px solid #ff9c00;
+}
