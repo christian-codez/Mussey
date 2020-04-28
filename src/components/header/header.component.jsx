@@ -13,6 +13,8 @@ import {
   selectFavourites,
 } from '../../redux/reselect/songSelector';
 import Logo from '../../img/mussey-logo.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 import DefaultUserProfileImage from '../../img/img_avatar.png';
 import { selectCurrentUser } from '../../redux/reselect/userSelector';
 import { auth } from '../../firebase/firebase.util';
@@ -143,8 +145,9 @@ const HeaderComponent = ({
             )}
 
             {currentUser ? (
-              <Link to='/profile'>
-                <img
+              <Link to='/profile' className='nav-link'>
+                <FontAwesomeIcon icon={faUser} /> My Account
+                {/* <img
                   src={
                     currentUser.photoURL
                       ? currentUser.photoURL
@@ -153,7 +156,7 @@ const HeaderComponent = ({
                   className='rounded-circle'
                   alt='Cinque Terre'
                   style={{ width: '40px', height: '40px' }}
-                />
+                /> */}
               </Link>
             ) : (
               ''
