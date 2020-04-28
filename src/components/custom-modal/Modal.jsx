@@ -1,6 +1,8 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
 import { withRouter } from 'react-router-dom';
+import './modal.css';
+
 const Modal = ({ redirectURL, history, children }) => {
   return createPortal(
     <div

@@ -28,6 +28,7 @@ export const settings_action_types = {
 };
 export const user_action_types = {
   CREATE_USER_PROFILE: 'CREATE_USER_PROFILE',
+  DELETE_USER_PROFILE: 'DELETE_USER_PROFILE',
   USER_SIGNED_OUT: 'USER_SIGNED_OUT',
   SIGNIN_SUCCESS: 'SIGNIN_SUCCESS',
   SIGNUP_SUCCESS: 'SIGNUP_SUCCESS',

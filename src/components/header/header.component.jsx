@@ -13,7 +13,7 @@ import {
   selectFavourites,
 } from '../../redux/reselect/songSelector';
 import Logo from '../../img/mussey-logo.png';
-import DefaultUserProfileImage from '../../img/music-playart.jpg';
+import DefaultUserProfileImage from '../../img/img_avatar.png';
 import { selectCurrentUser } from '../../redux/reselect/userSelector';
 import { auth } from '../../firebase/firebase.util';
 
@@ -132,18 +132,14 @@ const HeaderComponent = ({
             ) : (
               ''
             )}
-            {currentUser ? (
-              <li className='nav-item'>
-                <Link to='' onClick={() => auth.signOut()} className='nav-link'>
-                  Sign Out
-                </Link>{' '}
-              </li>
-            ) : (
+            {!currentUser ? (
               <li className='nav-item'>
                 <Link to='/signin' className='nav-link'>
                   Sign In
                 </Link>
               </li>
+            ) : (
+              ''
             )}
 
             {currentUser ? (

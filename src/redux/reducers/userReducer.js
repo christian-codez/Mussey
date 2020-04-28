@@ -8,7 +8,7 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case user_action_types.CREATE_USER_PROFILE:
-      return { ...state, currentUser: action.payload };
+      return { ...state, currentUser: action.payload }
     case user_action_types.USER_SIGNED_OUT:
       return { ...state, currentUser: action.payload };
     case user_action_types.SIGNIN_FAILURE:

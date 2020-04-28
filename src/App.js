@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import HeaderComponent from './components/header/header.component';
 import ControlArea from './components/control-area/ControlArea';
 import SignInSignOut from './components/signin-signout/SigninSignout';

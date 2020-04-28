@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
 import './profile-page.styles.css';
 import { connect } from 'react-redux';
-import { storage } from '../../firebase/firebase.util';
 import DefaultLogo from '../../img/img_avatar.png';
 import { updateUserProfile } from '../../redux/actions/userActions';
+import { auth } from '../../firebase/firebase.util';
+import { withRouter } from 'react-router-dom';
 
 const ProfilePage = ({
   userDetails,
@@ -11,6 +12,7 @@ const ProfilePage = ({
   favourites,
   playlists,
   genres,
+  history,
   ...props
 }) => {
   const [userInfo, setUserInfo] = useState({
@@ -34,6 +36,8 @@ const ProfilePage = ({
         email: userDetails.email,
         photoURL: userDetails.photoURL,
       });
+    } else {
+      history.push('/');
     }
   }, [userDetails]);
 
@@ -79,7 +83,7 @@ const ProfilePage = ({
                 onClick={() => inputFileRef.current.click()}
                 type='button'
                 className='btn btn-sm btn-primary btn-block'>
-                upload Image
+                upload image
               </button>
               <input
                 style={{ display: 'none' }}
@@ -100,26 +104,39 @@ const ProfilePage = ({
                 <span className='float-left'>
                   <strong>Favourites</strong>
                 </span>
-                {favourites}
+                <span className='badge badge-pill badge-warning'>
+                  {favourites}
+                </span>
               </li>
               <li className='list-group-item text-right'>
                 <span className='float-left'>
                   <strong>Playlists</strong>
                 </span>
-                {playlists}
+                <span className='badge badge-pill badge-primary'>
+                  {playlists}
+                </span>
               </li>
               <li className='list-group-item text-right'>
                 <span className='float-left'>
                   <strong>Genres</strong>
                 </span>
-                {genres}
+                <span className='badge badge-pill badge-danger'>{genres}</span>
               </li>
             </ul>
           </div>
           {/*  End of left col*/}
           <div className='col-md-9 mt-3 col-sm-12'>
             <div className='profile-head'>
-              <h5>{`${userInfo.firstname} ${userInfo.lastname}`}</h5>
+              <h5>
+                {`${userInfo.firstname} ${userInfo.lastname}`}
+                <small
+                  onClick={() => auth.signOut()}
+                  className='signout text-danger'
+                  style={{ cursor: 'pointer' }}>
+                  {' '}
+                  (Log out)
+                </small>
+              </h5>
               <h6 className='text-primary'>{userInfo.email}</h6>
             </div>
             <hr />
@@ -178,7 +195,7 @@ const ProfilePage = ({
               </div>
 
               <div className='form-group'>
-                <div className='col-xs-12'>
+                <div className='col-xs-12 col-md-5'>
                   <br />
                   <button
                     className='btn btn-md btn-success pull-right'
@@ -204,4 +221,6 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps, { updateUserProfile })(ProfilePage);
+export default withRouter(
+  connect(mapStateToProps, { updateUserProfile })(ProfilePage)
+);
