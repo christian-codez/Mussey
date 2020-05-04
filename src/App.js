@@ -1,17 +1,20 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import HeaderComponent from './components/header/header.component';
 import ControlArea from './components/control-area/ControlArea';
-import SignInSignOut from './components/signin-signout/SigninSignout';
 import { auth } from './firebase/firebase.util';
 import { createUserProfile, userSignOut } from './redux/actions/userActions';
 import { connect } from 'react-redux';
 import MyProvider from './contexts/songContext';
-import HomePage from './pages/homepage/HomePage';
-import FavouritePage from './pages/favourites/FavouritesPage';
-import GenresPage from './pages/genres/GenresPage';
-import PlaylistPage from './pages/playlists/PlaylistPage';
-import ProfilePage from './pages/profile/ProfilePage';
+
+const FavouritePage = lazy(() => import('./pages/favourites/FavouritesPage'));
+const PlaylistPage = lazy(() => import('./pages/playlists/PlaylistPage'));
+const ProfilePage = lazy(() => import('./pages/profile/ProfilePage'));
+const SignInSignOut = lazy(() =>
+  import('./components/signin-signout/SigninSignout')
+);
+const GenresPage = lazy(() => import('./pages/genres/GenresPage'));
+const HomePage = lazy(() => import('./pages/homepage/HomePage'));
 
 const App = ({ createUserProfile, userSignOut }) => {
   useEffect(() => {
@@ -34,12 +37,14 @@ const App = ({ createUserProfile, userSignOut }) => {
         <div className='row'>
           <div className='col'>
             <Switch>
-              <Route exact path='/' component={HomePage} />
-              <Route exact path='/genres/:id' component={GenresPage} />
-              <Route exact path='/playlists/:id' component={PlaylistPage} />
-              <Route exact path='/favourites' component={FavouritePage} />
-              <Route exact path='/signin' component={SignInSignOut} />
-              <Route exact path='/profile' component={ProfilePage} />
+              <Suspense fallback={<div>Loading...</div>}>
+                <Route exact path='/' component={HomePage} />
+                <Route exact path='/genres/:id' component={GenresPage} />
+                <Route exact path='/playlists/:id' component={PlaylistPage} />
+                <Route exact path='/favourites' component={FavouritePage} />
+                <Route exact path='/signin' component={SignInSignOut} />
+                <Route exact path='/profile' component={ProfilePage} />
+              </Suspense>
             </Switch>
           </div>
         </div>

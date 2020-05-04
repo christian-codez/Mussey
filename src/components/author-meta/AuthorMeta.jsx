@@ -10,7 +10,9 @@ const AuthorMeta = ({ song }) => {
       <span className='music-title'>
         {song ? shortenString(song.name, 17) : ''}
       </span>
-      <span className='music-author'>{song ? song.artistName : ''}</span>
+      <span className='music-author'>
+        {song ? shortenString(song.artistName, 25) : ''}
+      </span>
     </div>
   );
 };
