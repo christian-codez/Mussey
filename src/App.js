@@ -39,9 +39,9 @@ const App = ({ createUserProfile, userSignOut }) => {
         <HeaderComponent />
         <div className='row'>
           <div className='col'>
-            <Switch>
-              <ErrorBoundary>
-                <Suspense fallback={<Spinner />}>
+            <ErrorBoundary>
+              <Suspense fallback={<Spinner />}>
+                <Switch>
                   <Route exact path='/' component={HomePage} />
                   <Route exact path='/genres/:id' component={GenresPage} />
                   <Route exact path='/playlists/:id' component={PlaylistPage} />
@@ -50,10 +50,10 @@ const App = ({ createUserProfile, userSignOut }) => {
                   <Route exact path='/profile' component={ProfilePage} />
                   <Route exact path='/profile' component={ProfilePage} />
                   <Route exact path='/404' component={Error404} />
-                  <Redirect to='/404' />
-                </Suspense>
-              </ErrorBoundary>
-            </Switch>
+                  <Redirect from='*' to='/404' />
+                </Switch>
+              </Suspense>
+            </ErrorBoundary>
           </div>
         </div>
         <ControlArea />
