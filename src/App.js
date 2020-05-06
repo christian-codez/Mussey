@@ -1,5 +1,5 @@
 import React, { useEffect, lazy, Suspense } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import HeaderComponent from './components/header/header.component';
 import ControlArea from './components/control-area/ControlArea';
 import { auth } from './firebase/firebase.util';
@@ -17,6 +17,7 @@ const SignInSignOut = lazy(() =>
 );
 const GenresPage = lazy(() => import('./pages/genres/GenresPage'));
 const HomePage = lazy(() => import('./pages/homepage/HomePage'));
+const Error404 = lazy(() => import('./components/error-404/Error404'));
 
 const App = ({ createUserProfile, userSignOut }) => {
   useEffect(() => {
@@ -47,6 +48,9 @@ const App = ({ createUserProfile, userSignOut }) => {
                   <Route exact path='/favourites' component={FavouritePage} />
                   <Route exact path='/signin' component={SignInSignOut} />
                   <Route exact path='/profile' component={ProfilePage} />
+                  <Route exact path='/profile' component={ProfilePage} />
+                  <Route exact path='/404' component={Error404} />
+                  <Redirect to='/404' />
                 </Suspense>
               </ErrorBoundary>
             </Switch>
