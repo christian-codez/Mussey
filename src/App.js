@@ -50,7 +50,7 @@ const App = ({ createUserProfile, userSignOut }) => {
                   <Route exact path='/profile' component={ProfilePage} />
                   <Route exact path='/profile' component={ProfilePage} />
                   <Route exact path='/404' component={Error404} />
-                  <Redirect from='*' to='/404' />
+                  <Redirect to='/404' />
                 </Switch>
               </Suspense>
             </ErrorBoundary>
