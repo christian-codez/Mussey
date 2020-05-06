@@ -14,8 +14,4 @@ export const store = createStore(
     : compose(applyMiddleware(...middlewares))
 );
 
-if (process.env.NODE_ENV === 'development') {
-} else {
-}
-
 export const persistor = persistStore(store);

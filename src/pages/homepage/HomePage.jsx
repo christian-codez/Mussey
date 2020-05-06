@@ -8,6 +8,7 @@ const HomePage = ({ playlists, history, fetchSongsAsync }) => {
   useEffect(() => {
     fetchSongsAsync('/tracks/top');
   }, [history.location]);
+
   return (
     <div>
       <MusicPlayer playlists={playlists} />

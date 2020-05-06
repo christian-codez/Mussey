@@ -1,0 +1,124 @@
+section.error-page {
+    height: 80vh;
+    background-color: #010912;
+}
+
+.main {
+    text-align: center;
+    z-index: 5;
+}
+
+
+
+p.error-message {
+    font-size: 22px;
+    margin-top: 0;
+    color: #fff;
+}
+
+h1.error-title {
+    color: #fff;
+    font-size: 95px;
+    margin: 0;
+}
+
+a.button {
+    background: linear-gradient(#ff9c00, #ff9c00);
+    padding: 15px 47px;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 30px 15px rgba(0, 0, 0, 0.15);
+    outline: none;
+    color: #FFF;
+    font: 400 16px/2.5 Nunito, 'Varela Round', Sans-serif;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.bubble {
+    background: linear-gradient(#0138ff, #905f11);
+    border-radius: 50%;
+    box-shadow: 0 30px 15px rgba(0, 0, 0, 0.15);
+    position: absolute;
+}
+
+.bubble:before,
+.bubble:after {
+    content: '';
+    background: linear-gradient(#0138ff, #905f11);
+    border-radius: 50%;
+    box-shadow: 0 30px 15px rgba(0, 0, 0, 0.15);
+    position: absolute;
+}
+
+.bubble:nth-child(1) {
+    top: 16vh;
+    left: 10vw;
+    height: 22vmin;
+    width: 22vmin;
+}
+
+.bubble:nth-child(1):before {
+    width: 13vmin;
+    height: 13vmin;
+    bottom: -25vh;
+    right: -10vmin;
+}
+
+.bubble:nth-child(2) {
+    top: 20vh;
+    left: 38vw;
+    height: 10vmin;
+    width: 10vmin;
+}
+
+.bubble:nth-child(2):before {
+    width: 5vmin;
+    height: 5vmin;
+    bottom: -10vh;
+    left: -8vmin;
+}
+
+.bubble:nth-child(3) {
+    top: 28vh;
+    right: 30vw;
+    height: 13vmin;
+    width: 13vmin;
+}
+
+.bubble:nth-child(3):before {
+    width: 3vmin;
+    height: 3vmin;
+    bottom: -15vh;
+    left: -18vmin;
+    z-index: 6;
+}
+
+.bubble:nth-child(4) {
+    top: 35vh;
+    right: 9vw;
+    height: 18vmin;
+    width: 18vmin;
+}
+
+.bubble:nth-child(4):before {
+    width: 7vmin;
+    height: 7vmin;
+    bottom: -10vmin;
+    left: -15vmin;
+}
+
+.bubble:nth-child(5) {
+    top: 60vh;
+    right: 18vw;
+    height: 28vmin;
+    width: 28vmin;
+}
+
+.bubble:nth-child(5):before {
+    width: 10vmin;
+    height: 10vmin;
+    bottom: 5vmin;
+    left: -25vmin;
+}

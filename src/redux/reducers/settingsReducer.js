@@ -1,7 +1,7 @@
 import { settings_action_types } from '../types';
 
 const INITIAL_STATE = {
-  volume: 0.1,
+  volume: 1,
 };
 
 export default (state = INITIAL_STATE, action) => {

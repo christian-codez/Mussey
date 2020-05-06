@@ -6,6 +6,8 @@ import { auth } from './firebase/firebase.util';
 import { createUserProfile, userSignOut } from './redux/actions/userActions';
 import { connect } from 'react-redux';
 import MyProvider from './contexts/songContext';
+import Spinner from './components/spinner/spinner';
+import ErrorBoundary from './components/error-boundary/ErrorBoundary';
 
 const FavouritePage = lazy(() => import('./pages/favourites/FavouritesPage'));
 const PlaylistPage = lazy(() => import('./pages/playlists/PlaylistPage'));
@@ -37,14 +39,16 @@ const App = ({ createUserProfile, userSignOut }) => {
         <div className='row'>
           <div className='col'>
             <Switch>
-              <Suspense fallback={<div>Loading...</div>}>
-                <Route exact path='/' component={HomePage} />
-                <Route exact path='/genres/:id' component={GenresPage} />
-                <Route exact path='/playlists/:id' component={PlaylistPage} />
-                <Route exact path='/favourites' component={FavouritePage} />
-                <Route exact path='/signin' component={SignInSignOut} />
-                <Route exact path='/profile' component={ProfilePage} />
-              </Suspense>
+              <ErrorBoundary>
+                <Suspense fallback={<Spinner />}>
+                  <Route exact path='/' component={HomePage} />
+                  <Route exact path='/genres/:id' component={GenresPage} />
+                  <Route exact path='/playlists/:id' component={PlaylistPage} />
+                  <Route exact path='/favourites' component={FavouritePage} />
+                  <Route exact path='/signin' component={SignInSignOut} />
+                  <Route exact path='/profile' component={ProfilePage} />
+                </Suspense>
+              </ErrorBoundary>
             </Switch>
           </div>
         </div>
