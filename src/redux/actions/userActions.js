@@ -116,7 +116,7 @@ export const updateUserProfile = updatedUserInfo => {
         userInfo = imageURL ? { ...userInfo, photoURL: imageURL } : userInfo;
       }
 
-      const response = await firestore
+      await firestore
         .collection('users')
         .doc(`${updatedUserInfo.id}`)
         .update(userInfo);

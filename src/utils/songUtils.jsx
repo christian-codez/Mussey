@@ -21,3 +21,9 @@ export const shortenString = (string, length) => {
 
   return strLength > length ? subString + ' ...' : subString;
 };
+
+export const stopTrack = audioRef => {
+  audioRef.current.pause();
+  audioRef.current.currentTime = 0;
+  audioRef.current.onended = () => {};
+};

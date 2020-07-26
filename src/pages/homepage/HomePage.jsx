@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom';
 const HomePage = ({ playlists, history, fetchSongsAsync }) => {
   useEffect(() => {
     fetchSongsAsync('/tracks/top');
-  }, [history.location]);
+  }, [history.location, fetchSongsAsync]);
 
   return (
     <div>

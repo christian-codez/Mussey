@@ -3,13 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquare } from '@fortawesome/free-solid-svg-icons';
 import { stopMusic } from '../../redux/actions/playerActions';
 import { connect } from 'react-redux';
+import { stopTrack } from '../../utils/songUtils';
 
 const StopButton = ({ song, audioRef, stopMusic }) => {
   const stopSong = () => {
     stopMusic();
-    audioRef.current.pause();
-    audioRef.current.currentTime = 0;
-    audioRef.current.onended = () => {};
+    stopTrack(audioRef);
   };
 
   return (
